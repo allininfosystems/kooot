@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="marketplace_vendor_registration_email_email_template" label="New Vendor Registration Email Template" file="new_vendor_registration.html" type="html" module="Medma_MarketPlace" area="frontend"/>
+    <template id="marketplace_vendor_activation_email_email_template" label="New Vendor Activation Template" file="new_vendor_activation.html" type="html" module="Medma_MarketPlace" area="adminhtml"/>
+    <template id="marketplace_email_email_template" label="New Vendor Order Email Template" file="vendor_order_template.html" type="html" module="Medma_MarketPlace" area="frontend"/>
+    <template id="marketplace_registration_confirmation_email_email_template" label="Vendor confimation email" file="vendor_confirmation_email.html" type="html" module="Medma_MarketPlace" area="frontend"/>
+    <template id="report_email_template" label="Report Email Template" file="report.html" type="html" module="Medma_MarketPlace" area="frontend"/>
+</config>

@@ -1,0 +1,92 @@
+
+& when (@media-common = true) {
+  .new-product,
+  .sale-product{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    z-index: 1;
+    text-decoration: none;
+    img {
+      max-width: 100%;
+    }
+    &.top-right {
+      top: 0;
+      right: 0;
+      margin-top: 0 !important;
+      left: auto !important;
+      margin-left: 0 !important;
+    }
+    &.top-left {
+      top: 0;
+      margin-top: 0 !important;
+      left: 0 !important;
+      margin-left: 0 !important;
+      right: auto;
+    }
+    &.bottom-right {
+      top: auto !important;
+      margin-top: 0 !important;
+      left: auto !important;
+      margin-left: 0 !important;
+      bottom: 0;
+      right: 0;
+    }
+    &.bottom-left {
+      top: auto !important;
+      margin-top: 0 !important;
+      left: 0 !important;
+      margin-left: 0 !important;
+      bottom: 0;
+      right: auto;
+    }
+    &.mid-left {
+      top: 50%;
+      left: 0;
+      margin-left: 0 !important;
+      right: auto;
+    }
+    &.mid-right {
+      top: 50%;
+      left: auto;
+      margin-left: 0 !important;
+      right: 0;
+    }
+    &.mid-mid {
+      top: 50%;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+    }
+    &.top-mid {
+      top: 0;
+      margin-top: 0 !important;
+      left: 50%;
+      right: auto;
+      bottom: auto;
+    }
+    &.bottom-mid {
+      top: auto;
+      bottom: 0;
+      margin-top: 0 !important;
+      left: 50%;
+      right: auto;
+    }
+  }
+  .sale-product {
+    right: 0;
+  }
+
+  .new-product {
+    left: 0;
+  }
+
+  .product-image-container {
+    position: relative;
+  }
+
+  .product.media {
+    position: relative;
+  }
+}

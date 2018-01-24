@@ -1,0 +1,51 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+
+?>
+<?php 
+$role_id = $this->helper('\Medma\MarketPlace\Helper\Data')->getConfig('general', 'vendor_role');
+$current_adminuser = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInAdminUser();
+if($role_id == $current_adminuser)
+{ ?>
+<script>
+function fun(){
+	console.log('---Call Fun---');
+	if(document.getElementsByName('product[approved]'))
+	{
+		
+		var elements = document.getElementsByName('product[approved]');
+		var id = elements[0].getAttribute('id');
+		console.log('label[for="'+id+'"]');
+		document.getElementById(id).style.display='none';
+		e1 = document.querySelector('label[for="'+id+'"]');
+		e1.style.display="none";
+
+	}	
+	if(document.getElementsByName('product[name_keyword]'))
+	{
+		
+		var elements = document.getElementsByName('product[name_keyword]');
+		var id = elements[0].getAttribute('id');
+		console.log('label[for="'+id+'"]');
+		document.getElementById(id).style.display='none';
+		e1 = document.querySelector('label[for="'+id+'"]');
+		e1.style.display="none";
+
+	}	
+}
+create_category_button
+setInterval(function(){ fun(); }, 3000);
+
+
+</script>
+<?php }?>
+

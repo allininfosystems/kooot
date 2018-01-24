@@ -1,0 +1,25 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "medma";
+  src:url("../fonts/medma.eot");
+  src:url("../fonts/medma.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/medma.woff") format("woff"),
+    url("../fonts/medma.ttf") format("truetype"),
+    url("../fonts/medma.svg#medma") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+.admin__menu .item-medma > a:before,
+.admin__menu .item-medma > a:before,
+.admin__menu .item-vendor > a:before {
+  font-family: "medma" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\61" !important;
+}

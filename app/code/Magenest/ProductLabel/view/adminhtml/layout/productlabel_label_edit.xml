@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author <ThaoPV>-thaopw@gmail.com
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\ProductLabel\Block\Adminhtml\Label\Edit" name="productlabel_label_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magenest\ProductLabel\Block\Adminhtml\Label\Edit\Tabs" name="label_edit_tabs">
+                <block class="Magenest\ProductLabel\Block\Adminhtml\Label\Edit\Tab\Main" name="label_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">productlabel_label_tabs</argument>
+                    <argument name="block" xsi:type="string">label_edit_tab_main</argument>
+                </action>
+                <block class="Magenest\ProductLabel\Block\Adminhtml\Label\Edit\Tab\Conditions" name="label_edit_tab_conditions"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">productlabel_label_tabs_conditions</argument>
+                    <argument name="block" xsi:type="string">label_edit_tab_conditions</argument>
+                </action>
+                <block class="Magenest\ProductLabel\Block\Adminhtml\Label\Edit\Tab\Actions" name="label_edit_tab_actions"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">productlabel_label_tabs_actions</argument>
+                    <argument name="block" xsi:type="string">label_edit_tab_actions</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,53 @@
+<!--@subject Reporting the product @-->
+<!--@vars {
+"var this.getUrl($store, 'admin')":"Warehouse Account URL",
+"var customer.email":"Customer Email",
+"var customer.name":"Customer Name"
+} @-->
+ 
+{{template config_path="design/email/header_template"}} <!-- pathe of template header-->
+ 
+<!-- here $reporting_type , $full_name, $company, $myvar4, $myvar5, $myvar6 are variables in which we
+                                     asssign values when we use this template for send mail-->
+ 
+<!-- you can Modify content of template according to your requirement-->
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting"> Hi,</p>
+        </td>
+    </tr>
+
+    <tr class="email-information">
+        <td>
+            <table class="email-items">
+				<tr>
+					<td><b>Reason For Reporting : </b></td>
+					<td>{{var reporting_type}}</td>
+				</tr>
+				<tr>
+					<td><b>Full Name : </b></td>
+					<td>{{var full_name}}</td>
+				</tr>
+				<tr>
+					<td><b>Company : </b></td>
+					<td>{{var company}}</td>
+				</tr>
+				<tr>
+					<td><b>E-mail Address :</b></td>
+					<td>{{var email}}</td>
+				</tr>
+				<tr>
+					<td><b>Telephone : </b></td>
+					<td>{{var phone}}</td>
+				</tr>
+				<tr>
+					<td><b>Message : </b></td>
+					<td>{{var message}}</td>
+				</tr>
+            </table>
+        </td>
+    </tr>
+</table>
+ 
+{{template config_path="design/email/footer_template"}} <!--footer of template-->

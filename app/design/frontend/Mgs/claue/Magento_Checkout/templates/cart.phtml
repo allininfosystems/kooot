@@ -1,0 +1,20 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<a class="proceed-checkout" href="<?php echo $block->getCheckoutUrl(); ?>"><span><?php echo __('Proceed to Checkout') ?></span></a>
+
+<?php
+/**
+ * Shopping cart template
+ *
+ * @var $block \Magento\Checkout\Block\Cart
+ */
+
+if ($block->getItemsCount()) {
+    echo $block->getChildHtml('with-items');
+} else {
+    echo $block->getChildHtml('no-items');
+}

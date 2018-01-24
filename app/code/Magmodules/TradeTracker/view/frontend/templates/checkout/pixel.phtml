@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © 2017 Magmodules. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/**
+ * @var $block \Magmodules\TradeTracker\Block\Checkout\Pixel
+ */
+?>
+<!-- START TRADETRACKER PIXEL -->
+<?php if ($pixelData = $block->getPixelData()) { ?>
+    <?php if(!empty($pixelData['transactions'])) { ?>
+        <?php foreach($pixelData['transactions'] as $productID => $transaction) { ?>
+            <script type="text/javascript">
+                var ttConversionOptions = ttConversionOptions || [];
+                ttConversionOptions.push({
+                    type: 'sales',
+                    campaignID: '<?php echo $pixelData['campaign_id']; ?>',
+                    productID: '<?php echo $productID; ?>',
+                    transactionID: '<?php echo $pixelData['transaction_id']; ?>',
+                    transactionAmount: '<?php echo number_format($transaction['amount'], 2, '.', ''); ?>',
+                    quantity: '1',
+                    email: '<?php echo $pixelData['email']; ?>',
+                    descrMerchant: '',
+                    descrAffiliate: '',
+                    currency: ''
+                });
+            </script>
+            <noscript>
+                <img src="//ts.tradetracker.net/?cid=<?php echo $pixelData['campaign_id']; ?>&amp;pid=<?php echo $productID; ?>&amp;tid=<?php echo $pixelData['transaction_id']; ?>&amp;tam=<?php echo number_format($transaction['amount'], 2, '.', ''); ?>&amp;data=&amp;qty=1&amp;eml=<?php echo $pixelData['email']; ?>&amp;descrMerchant=&amp;descrAffiliate=&amp;event=sales&amp;currency=<?php echo $pixelData['currency']; ?>" alt="" />
+            </noscript>
+        <?php } ?>
+        <script type="text/javascript">
+            (function(ttConversionOptions) {
+                var campaignID = 'campaignID' in ttConversionOptions ? ttConversionOptions.campaignID : ('length' in ttConversionOptions && ttConversionOptions.length ? ttConversionOptions[0].campaignID : null);
+                var tt = document.createElement('script'); tt.type = 'text/javascript'; tt.async = true; tt.src = '//tm.tradetracker.net/conversion?s=' + encodeURIComponent(campaignID) + '&t=m';
+                var s = document.getElementsByTagName('script'); s = s[s.length - 1]; s.parentNode.insertBefore(tt, s);
+            })(ttConversionOptions);
+        </script>
+    <?php } ?>
+<?php } ?>
+<!-- END TRADETRACKER PIXEL -->

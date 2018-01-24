@@ -1,0 +1,95 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+?>
+
+<?php $transactions = $block->getTransactions(); 
+
+?>
+
+<div id="vendorGrid">
+    <div class="grid">
+        <div class="admin__table-wrapper">
+           <table cellspacing="0" class="data-table admin__table-primary" id="vendorGrid_table">
+	
+				<col width="2" />
+				<col width="2" />
+				<col width="2" />
+				<col width="2" />
+				<col width="2" />
+                <thead>
+                    <tr class="headings">
+                        <th class="data-grid-th"><span class="nobr"><?php echo __('Transaction Date'); ?></span></th>
+                        <th class="data-grid-th"><span class="nobr"><?php echo __('Order Number'); ?></span></th>
+                        <th class="data-grid-th"><span class="nobr"><?php echo __('Information'); ?></span></th>
+                        <th class="data-grid-th"><span class="nobr"><?php echo __('Credit'); ?></span></th>
+                        <th class="data-grid-th"><span class="nobr"><?php echo __('Debit'); ?></span></th>						
+                        <th class="data-grid-th last"><span class="nobr"><?php echo __('Vendor Amount'); ?></span></th>
+                    </tr>                                                
+                </thead>
+                <tbody>
+  
+                    <?php if(count($transactions) > 0): ?>
+                        <?php $i = 0; $total = 0; ?>
+                        <?php foreach($transactions as $transaction): $i++; ?>
+                            <tr class="border <?php echo ($i % 2 == '1' ? 'even' : '') ?>">
+                                <td class=""><?php echo $transaction->getTransactionDate(); ?></td>
+                                <td class=""><?php echo $transaction->getOrderNumber(); ?></td>
+                                <td class=""><?php echo $transaction->getInformation(); ?></td>
+                                <td class="a-right"><?php 
+                                if($transaction->getType() == 'Credit')
+                                {
+									echo number_format($transaction->getAmount(),2);
+								}
+								else
+								{
+									echo "";
+								}
+                                 ?></td>
+                                <td class="a-right"><?php 
+                                
+                                if($transaction->getType() == 'Debit')
+                                {
+									echo number_format($transaction->getAmount(),2);
+								}
+								else
+								{
+									echo "";
+								}
+                                 ?></td>
+                                <?php
+                                if ($transaction->getType() == 'Credit'):
+                                    $total += $transaction->getAmount();
+                                else:
+                                    $total -= $transaction->getAmount();
+                                endif;
+                                ?>
+                                <td class="a-right"><?php echo $total; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                            <tr>
+                                <td colspan="6"><?php echo __('No Transaction Found !!'); ?></td>
+                            </tr>
+                    <?php endif; ?>
+    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+#vendorGrid colgroup
+{
+	width:100%;
+	float:left;
+}
+</style>

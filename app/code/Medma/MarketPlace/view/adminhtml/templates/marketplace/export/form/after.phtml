@@ -1,0 +1,50 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+
+$role_id = $this->helper('\Medma\MarketPlace\Helper\Data')->getConfig('general', 'vendor_role');
+$current_adminuser = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInAdminUser();
+if($role_id == $current_adminuser){
+?>
+
+<fieldset class="admin__fieldset" id="export_filter_container" style="display:none;">
+    <legend class="admin__legend">
+        <span></span>
+    </legend>
+    <br />
+    <form id="export_filter_form" action="<?php echo $block->getUrl('admin_marketplace/export/export').'entity/catalog_product/file_format/csv'; ?>" method="post">
+        <input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>" />
+        <input name="vendor_id" type="hidden" value="<?php echo $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInAdminUserId();?>">
+		<input name="skip_attr[]" type="hidden" value="135">
+        <div id="export_filter_grid_container" style="display:none"></div>
+		    <button class="action- scalable" onclick="getFile();"><span><?php
+        echo __('Continue');
+    ?></span></button>
+      </form>
+
+</fieldset>
+<?php }else
+{?>
+<fieldset class="admin__fieldset" id="export_filter_container" style="display:none;">
+    <legend class="admin__legend">
+        <span><?php  echo __('Entity Attributes'); ?></span>
+    </legend>
+    <br />
+    <form id="export_filter_form" action="<?php echo $block->getUrl('admin_marketplace/export/export').'entity/catalog_product/file_format/csv'; ?>" method="post">
+        <input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>" />
+        <div id="export_filter_grid_container"><!-- --></div>
+    
+    <button class="action- scalable" onclick="getFile();"><span><?php
+     echo __('Continue');
+    ?></span></button>
+      </form>
+</fieldset>
+<?php }?>	

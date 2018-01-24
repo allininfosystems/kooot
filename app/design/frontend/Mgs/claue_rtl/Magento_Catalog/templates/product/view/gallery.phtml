@@ -1,0 +1,239 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php if($_product->getMgsDetailTemplate() == ""): ?>
+	<?php $templateLayout = $themeHelper->getStoreConfig('mpanel/product_details/product_ct_template'); ?>
+<?php else: ?>
+	<?php $templateLayout = $_product->getMgsDetailTemplate(); ?>
+<?php endif ?>
+<?php $galleryImages = $block->getGalleryImages() ?>
+<?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+<?php 
+$imgBase = $_imagehelper->init($_product, 'category_page_list')->getUrl();;
+?>
+
+<?php if($templateLayout == 1): ?>
+	<?php // Grid Image ?>
+	<?php if(count($galleryImages)): ?>
+		<div class="row">
+			<?php $i= 0; foreach($galleryImages as $image): $i++; ?>
+				<div class="item col-xs-6">
+					<div class="image-item <?php if($image->getIsBaseImage()): ?>base-image<?php endif ?>">
+						<img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt=""/>
+						<?php if($image->getMediaType() == 'external-video'): ?>
+							<div class="product-video-button">
+								<a href="<?php echo $image->getVideoUrl(); ?>"><i class="pe-7s-play pr"></i><?php echo __('View Video'); ?></a>		
+							</div>
+						<?php endif ?>
+					</div>
+				</div>
+				<?php if($i % 2 == 0): ?>
+					<div class="clearfix"></div>
+				<?php endif ?>
+			<?php endforeach ?>
+		</div>
+	<?php else: ?>
+		<div class="product-image-base">
+			<img class="img-responsive" src="<?php echo $imgBase; ?>" alt=""/>
+		</div>
+	<?php endif ?>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'zoom-images'
+		], function ($) {
+			$(document).ready(function() {
+				zoomElement(".product-gallery-grid .image-item");
+			});
+		});
+	</script>
+<?php elseif($templateLayout == 2 || $templateLayout == 3): ?>
+	<?php // List Image ?>
+	<?php if(count($galleryImages)): ?>
+		<?php $i= 0; foreach($galleryImages as $image): $i++; ?>
+			<div class="image-item <?php if($image->getIsBaseImage()): ?>base-image<?php endif ?>">
+				<img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt=""/>
+				<?php if($image->getMediaType() == 'external-video'): ?>
+					<div class="product-video-button">
+						<a href="<?php echo $image->getVideoUrl(); ?>"><i class="pe-7s-play pr"></i><?php echo __('View Video'); ?></a>		
+					</div>
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+	<?php else: ?>
+		<div class="product-image-base">
+			<img class="img-responsive" src="<?php echo $imgBase; ?>" alt=""/>
+		</div>
+	<?php endif ?>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'zoom-images'
+		], function ($) {
+			$(document).ready(function() {
+				zoomElement(".product-gallery-list .image-item");
+			});
+		});
+	</script>
+<?php elseif($templateLayout == 4): ?>
+	<?php // Vertical Thumbnail ?>
+	<div class="row vertical-thumbnail">
+		<?php $k = 0; foreach($galleryImages as $image): $k++; ?>
+			<?php if($k == 1): ?><?php $imgBase = $image->getLargeImageUrl(); ?><?php endif ?>
+			<?php if($image->getIsBaseImage()): ?>
+				<?php $imgBase = $image->getLargeImageUrl();?>
+			<?php endif ?>
+		<?php endforeach ?>
+		<div class="parent__gallery-thumbnail">
+			<div class="product-gallery-carousel gallery-thumbnail slick-thumbnail">
+				<?php foreach($galleryImages as $image): ?>
+					<div class="item">
+						<div class="image-item<?php if($image->getMediaType() == 'external-video'): ?> video-thumbnail<?php endif ?><?php if($image->getIsBaseImage() || $imgBase == $image->getLargeImageUrl()): ?> base-image active<?php endif ?>" data-img-change="<?php echo $image->getLargeImageUrl(); ?>">
+							<?php if($image->getMediaType() == 'external-video'): ?>
+								<a href="<?php echo $image->getVideoUrl(); ?>">
+							<?php endif ?> 
+									<img class="img-responsive" src="<?php echo $image->getMediumImageUrl(); ?>" alt=""/>
+							<?php if($image->getMediaType() == 'external-video'): ?>
+								</a>
+							<?php endif ?> 
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+		<div class="product-image-base">
+			<img class="img-responsive" src="<?php echo $imgBase; ?>" alt=""/>
+		</div>
+	</div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'mgs/slick',
+			'YouTubePopUp'
+		], function ($) {
+			$('.slick-thumbnail').slick({
+				dots: false,
+				arrows: true,
+				vertical: true,
+				slidesToShow: 5,
+				slidesToScroll: 5,
+				verticalSwiping: true,
+				prevArrow: '<span class="pe-7s-angle-up"></span>',
+				nextArrow: '<span class="pe-7s-angle-down"></span>',
+				responsive: [
+				{
+					breakpoint: 1199,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3
+					}
+				},
+				{
+					breakpoint: 991,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 360,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1
+					}
+				}
+				]
+			});
+			$(document).ready(function() {
+				$(".image-item.video-thumbnail a").YouTubePopUp();
+			});
+		});
+	</script>
+<?php else: ?>
+	<?php // Horizontal Thumbnail ?>
+	<div class="product-image-base">
+		<?php $k = 0; foreach($galleryImages as $image): $k++; ?>
+			<?php if($k == 1): ?><?php $imgBase = $image->getLargeImageUrl(); ?><?php endif ?>
+			<?php if($image->getIsBaseImage()): ?>
+				<?php $imgBase = $image->getLargeImageUrl();?>
+			<?php endif ?>
+		<?php endforeach ?>
+		<img class="img-responsive" src="<?php echo $imgBase; ?>" alt=""/>
+	</div>
+	<div class="parent__gallery-thumbnail">
+		<div class="product-gallery-carousel gallery-thumbnail owl-carousel">
+			<?php foreach($galleryImages as $image): ?>
+				<div class="item">
+					<div class="image-item<?php if($image->getMediaType() == 'external-video'): ?> video-thumbnail<?php endif ?><?php if($image->getIsBaseImage() || $imgBase == $image->getLargeImageUrl()): ?> base-image active<?php endif ?>" data-img-change="<?php echo $image->getLargeImageUrl(); ?>">
+						<?php if($image->getMediaType() == 'external-video'): ?>
+							<a href="<?php echo $image->getVideoUrl(); ?>">
+						<?php endif ?> 
+								<img class="img-responsive" src="<?php echo $image->getMediumImageUrl(); ?>" alt=""/>
+						<?php if($image->getMediaType() == 'external-video'): ?>
+							</a>
+						<?php endif ?> 
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+	</div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'mgs/owlcarousel',
+			'YouTubePopUp'
+		], function ($) {
+			$('.product-gallery-carousel').owlCarousel({
+				items: 4,
+				autoplay: false,
+				autoplayHoverPause: false,
+				nav: true,
+				dots: false,
+				rtl: true,
+				navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
+				responsive:{
+					0:{
+						items:2
+					},
+					480:{
+						items:2
+					},
+					768:{
+						items:3
+					},
+					992:{
+						items:4
+					}
+				}
+			});
+			$(document).ready(function() {
+				$(".image-item.video-thumbnail a").YouTubePopUp();
+			});
+		});
+	</script>
+<?php endif ?>
+<script type="text/javascript">
+	require([
+		'jquery',
+		'YouTubePopUp',
+		'zoom-images'
+	], function ($) {
+		$(document).ready(function() {
+			zoomElement(".product-image-base");
+			$(".product-video-button a").YouTubePopUp();
+		});
+	});
+</script>

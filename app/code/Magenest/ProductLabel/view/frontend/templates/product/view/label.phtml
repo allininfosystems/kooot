@@ -1,0 +1,31 @@
+<?php
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author ThaoPV <thaopw@gmail.com>
+ *
+ */
+?>
+<?php /** @var \Magenest\ProductLabel\Block\Product\View $block */ ?>
+<?php if($block->isNewProduct()):?>
+    <?php $newLabel = $block->getDefaultNewLabel();?>
+    <span class="new-product <?php echo $newLabel->getData('product_position')?>">
+        <img src="<?php echo $newLabel->getData('product_image_url')?>" alt="new label"/>
+    </span>
+<?php endif;?>
+
+<?php if($block->isSale()):?>
+    <?php $saleLabel = $block->getSaleLabel();?>
+    <span class="sale-product <?php echo $saleLabel->getData('product_position');?>">
+        <img src="<?php echo $saleLabel->getData('product_image_url')?>" alt="sale label"/>
+    </span>
+<?php endif;?>
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Module/etc/module.xsd">
+    <module name="Medma_MarketPlace" setup_version="100.0.5">
+    	<sequence>Magento_Catalog</sequence>
+    </module>
+</config>

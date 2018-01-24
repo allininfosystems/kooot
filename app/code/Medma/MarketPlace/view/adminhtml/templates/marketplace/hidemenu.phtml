@@ -1,0 +1,71 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+?>
+
+<?php 
+$role_id = $this->helper('\Medma\MarketPlace\Helper\Data')->getConfig('general', 'vendor_role');
+$current_adminuser = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInAdminUser();
+if($role_id == $current_adminuser)
+{?>
+<script >
+document.getElementById('menu-medma-marketplace-vendor').style.display='block';
+</script>
+<style>
+#menu-magento-backend-stores
+{
+	display: none;
+}
+</style>
+<script>
+ require(['jquery'], function($){
+	$(document).on('ready',function() {
+		
+		setTimeout(function(){
+				$('button[data-index=create_category_button]').remove();
+				$('button#addAttribute').remove();
+			}, 10000);
+	});
+});
+</script>
+
+<?php }else{?>
+<script >
+document.getElementById('menu-medma-marketplace-vendor').style.display='none';
+</script>
+
+<?php }?>
+<script>
+
+if(document.getElementById("page_display_profile_frontend_for_admin")){
+	var x = document.getElementById("page_display_profile_frontend_for_admin");
+    val = x[x.selectedIndex].value;
+    console.log('=-----'+val);
+	if(val==0)
+	{
+		x.selectedIndex=1;
+		console.log('=-----'+x[x.selectedIndex].value);
+	}
+}
+
+//~ function removeAddCategoryButtonForVendor(){
+	//~ console.log('removeAddCategoryButtonForVendor called');
+	//~ if($('button[data-index=create_category_button]')){
+		//~ if($('button[data-index=create_category_button]').length == 1){
+			//~ $('button[data-index=create_category_button]').remove();
+		//~ }else{
+			//~ setTimeout('removeAddCategoryButtonForVendor()',1000);
+		//~ }
+	//~ }else{
+		//~ setTimeout('removeAddCategoryButtonForVendor()',1000);
+	//~ }
+//~ }
+</script>

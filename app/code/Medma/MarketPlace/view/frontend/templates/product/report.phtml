@@ -1,0 +1,214 @@
+<?php 
+$om = \Magento\Framework\App\ObjectManager::getInstance();
+$session = $om->get('Magento\Catalog\Model\Session');
+$session->setUploadedImages('');
+$product = $block->getProduct();
+$user = $om->create('Magento\User\Model\User')->load($product->getVendor());
+
+?>
+<div id="report_contt" class="report_contt">
+	<div class="container">
+		<form class="form-horizontal" action="<?php echo $this->getUrl('marketplace/report/submit')?>" method="post"  id="contact_form">
+		<fieldset>
+		<div class="form-group">	
+			<div class="col-md-6 product-details">
+				<div class="product_details_btn">
+				<?php echo __('Product details');?>
+				</div>
+				<div class="col-md-12 p-name">
+				<label class="control-label product-name"><?php echo __('Product name:')?></label>
+				<span><?php echo $product->getName(); ?></span>
+				</div>
+				<div class="col-md-12">
+				<label class="control-label product-sku"><?php echo __('sku:')?></label>
+				<span><?php echo $product->getSku(); ?></span>
+				</div>
+				<div class="col-md-12">
+				<label class="control-label product-seller"><?php echo __('Seller:')?></label>
+				<span><?php echo $user->getName();?></span>
+				</div>
+				
+			</div>	
+			<div class="col-md-6 product-image">
+				<div class="product_img_btn">
+				<?php echo __('Product Image');?>
+				</div>
+				<div>
+					<img style="width:20%;height:20%;margin-top:10px;" src="<?php echo $this->helper('Magento\Catalog\Helper\Product')->getImageUrl($product);?>"/>
+				</div>
+			</div>
+		</div>	
+
+
+		<div class="form-group"> 
+			  <label class="col-md-6 control-label "><?php echo __('REASON FOR REPORTING:')?></label>
+				<div class="col-md-6 selectContainer">
+				<div class="input-group">
+				<i class="fa fa-bars"></i>
+				<select name="reporting_type" class="form-control selectpicker" >
+				  <option value="DMCA"><?php echo __('DMCA');?></option>
+				  <option value='COPYRIGHT'><?php echo __('COPYRIGHT');?></option>
+				  <option value="INFRINGEMENT"><?php echo __('INFRINGEMENT');?></option>
+				  <option value="FRAUDULENT ITEM"><?php echo __('FRAUDULENT ITEM');?></option>
+				  <option value="INTELECTUAL PROPERTY"><?php echo __('INTELECTUAL PROPERTY');?></option>
+				  <option value="SITE POLICY VIOLATION"><?php echo __('SITE POLICY VIOLATION');?></option>
+				  <option value="OTHER REASON"><?php echo __('OTHER REASON');?></option>
+				</select>
+				</div>
+				</div>
+		</div>
+		<div class="form-group">	
+			<div>
+					<div class="detail_btn">
+						<?php echo __('Your details');?>
+					</div>
+			</div>
+			<div class="confidential_text">
+					<span class="confidential_msg"><?php echo __('Your details & report is confidential and not shared with anyone else, other than our representives')?></span>
+			</div>
+		</div>	
+		<div class="form-group">
+			<div class="col-md-6 group name">
+			  <label class="control-label required"><?php echo __('Your Full Name')?></label>  
+			  <div class="inputGroupContainer full_name">
+			  <div class="input-group">
+			 <i class="fa fa-user"></i>
+			  <input  name="full_name" placeholder="Name" class="form-control required"  type="text" required="true">
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-6 group">
+			  <label class="control-label"><?php echo __('Company');?></label>  
+			  <div class="inputGroupContainer company">
+			  <div class="input-group">
+			 <i class="fa fa-lock"></i>
+			  <input  name="company" placeholder="Company" class="form-control"  type="text">
+				</div>
+			  </div>
+			 </div>
+		</div>
+		
+
+		<div class="form-group">
+			<div class="col-md-6 group email-address">
+			  <label class="control-label required"><?php echo __('E-mail Address');?></label>  
+				<div class="inputGroupContainer">
+				<div class="input-group">
+				<i class="fa fa-envelope"></i>
+					<input name="email" placeholder="E-Mail Address" class="form-control"  type="email" required="true">
+				</div>
+			  </div>
+			</div>
+
+		
+
+		<div class="col-md-6 group">
+		  <label class="control-label"><?php echo __('Telephone Number');?></label>  
+			<div class="inputGroupContainer">
+			<div class="input-group">
+				<i class="fa fa-phone"></i>
+		  <input name="phone" placeholder="Telephone Number" class="form-control" type="text">
+			</div>
+		  </div>
+		  </div>
+		</div>
+
+		
+		<div class="form-group group">
+		  <label class="col-md-12 control-label"><?php echo __('Your Message');?></label>
+			<div class="col-md-12 inputGroupContainer message">
+			<div class="input-group-textarea">
+				<i class="fa fa-pencil"></i>
+					<textarea rows="10" class="form-control" name="message" placeholder="Type your message in detail"></textarea>
+		  </div>
+		  </div>
+		</div>
+		<div id="mulitplefileuploader" class="mulitplefileuploader" ><?php echo __('Upload')?></div>
+			<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i><?php echo __(' Report has been sent successfully.')?></div>
+		<div class="form-group">
+		  <label class="col-md-6 control-label">
+				 <input type="checkbox" name="send_copy">
+				 <span style="margin-left:10px;font-weight:normal;"><?php echo __('Send me a copy');?></span>
+				 </label>
+		</div>
+		<div class="form-group">
+		  <div class="col-md-6 pad-5">
+			<button type="submit"><img src="<?php echo $this->getViewFileUrl('Medma_MarketPlace::images/submit.png')?>"/></button>
+		  </div>
+		  <div class="col-md-6 pad-5">
+			<button type="button" data-role="action"><img src="<?php echo $this->getViewFileUrl('Medma_MarketPlace::images/cancel.png')?>"/></button>
+		  </div>
+		</div>
+
+	</fieldset>
+	</form>
+	</div>
+</div>
+
+<a onclick="report()" id="report" class="report_button">
+	Report this product
+</a>
+<input type="hidden" value="<?php echo $this->getViewFileUrl('Medma_MarketPlace::images/attachment.jpg')?>" id="attach_image">
+<script>
+function report()
+{	
+	
+	require([
+			'jquery',
+			'Magento_Ui/js/modal/modal'
+		],
+	function($,modal) {
+		var options = 
+		{
+			type: 'popup',
+			responsive: true,
+			innerScroll: true,
+			title: 'REPORT THIS PRODUCT',
+			"Ok": {                          
+			click: function () {
+			$(".ui-dialog-buttonpane button:contains('Ok')")
+                          .attr("disabled", true)
+                          .attr("display", 'none')
+                          .addClass("ui-state-disabled");
+                        }
+      }
+		
+		};
+		var popup = modal(options, $('#report_contt'));
+		$('#report_contt').modal('openModal');
+		$('#report_popup button').on('click',function(){ 
+			
+			
+			this.closeModal();
+		});
+		console.log("dsfd");
+		var settings = {
+			url: "<?php echo $this->getUrl('marketplace/report/upload'); ?>",
+			method: "POST",
+			allowedTypes:"jpg,png,txt,pdf,zip,doc,docx,jpeg",
+			fileName: "myfile",
+			multiple: true,
+			onSuccess:function(files,data,xhr)
+			{
+			$("#status").html("<font color='green'>Upload is success</font>");
+
+			},
+			onError: function(files,status,errMsg)
+			{ 
+			$("#status").html("<font color='red'>Upload is Failed</font>");
+			}
+			};
+			$("#mulitplefileuploader").uploadFile(settings);
+		}
+		
+		);
+		
+		
+}
+function closeform()
+{
+	this.closeModal();
+}
+
+</script>
+

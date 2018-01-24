@@ -1,0 +1,93 @@
+<?php
+$id = $this->getRequest()->getParam('id');
+
+$profile = $block->getProfile($id);
+$user = $block->getUser($profile->getUserId());
+?>
+<div id="profile_wrapper">
+   <?php
+	$profileImage = $block->getViewFileUrl('Medma_MarketPlace::images/default.jpg');
+    if ($profile->getImage()){
+	  $profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $profile->getImage(); 
+	}
+	?>
+    <div id="user_profile">
+       <div id="user_image">
+            <img src="<?php echo $profileImage ;?>">
+       </div>
+       <div id="user_detail">
+            <h3 id="vendor_name"><b><a href="<?php echo $this->getUrl("marketplace/vendor/profile/id/".$id."/"); ?>"><?php echo ucwords($user->getName()); ?></a></b></h3>
+            <div id="membership_detail">
+                <p><?php echo $profile->getMessage(); ?></p>
+            </div>
+            <div id="option_wrapper">
+                <div class="contact-details-container">
+					<div class="contact-details"><b>Email: </b><?php echo $user->getEmail(); ?></div>
+					<div class="contact-details"><b>Phone: </b><?php echo $profile->getContactNumber(); ?></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="new_msg">
+	<h1><?php echo __('Send Message');?></h1>	
+<!--
+<form method="post" action="<?php //echo $this->getUrl('marketplace/vendor/send')?>">
+-->
+	<input type="hidden" value="<?php echo $id ?>" id="vendor_id">
+<!--
+	<div class="title">
+	<label for="title"><?php //echo __('Title');?></label>
+	<input type="text" name="title">
+	</div>
+-->
+	<div class="content">
+		<h4><label for="message"><?php echo __('Write Your Message Here');?></label></h4>
+		<textarea name="message" id="message" style="border-radius:6px; margin-bottom:10px"></textarea>
+		<button type="button" onclick="convertTohtml()" class="button primary action"><span><?php echo __('Send');?></span></button>
+		 <img id="addloader" style="display:none;width:30px;" src="<?php echo $block->getViewFileUrl('Medma_MarketPlace::images/35.gif');?>">
+	</div>
+
+<!--
+</form>
+-->
+</div>
+
+<style>
+.new_msg
+{
+	margin-top: 20px;
+    width: 50%;
+    float: left;
+    margin-bottom: 20px;
+}	
+</style>
+<script>
+function convertTohtml()
+{	
+	jQuery('#addloader').css('display','block');
+	var vendorid = document.getElementById('vendor_id').value;
+	//alert(vendorid);
+	var input = document.getElementById('message');
+    var lines = input.value.split('\n');
+    var html = '';
+    for( var i=0; i<lines.length; i++ ) {
+
+            var models = lines[i].split('\n');
+            html += '<p>' + models.join('</p></br>') ;
+        
+    }
+    console.log(html);
+    //document.getElementById('htmltext').innerHtml=html;
+    jQuery.ajax({
+	method:'post',	
+	data:{'message':html},	
+    url: "<?php echo $this->getUrl('marketplace/vendor/send');?>"+'id/'+vendorid,
+    success:function(data) {
+		jQuery('#addloader').css('display','none');
+		window.location.href="<?php echo $this->getUrl('marketplace/vendor/profile').'id/';?>"+vendorid;
+      },
+  });
+}
+</script>
+

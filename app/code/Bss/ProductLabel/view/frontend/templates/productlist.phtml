@@ -1,0 +1,35 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ProductLabel
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+ 
+?>
+<div id="compare-page" style="display:none">
+	<?php $link=$this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+		echo strpos($link,'product_compare');
+	?>
+</div>
+<div id="outofstock-position" style="display: none"><?php echo $block->getOutOfStockPosition();?></div>
+<div id="newproduct-position" style="display: none"><?php echo $block->getNewProductPosition();?></div>
+<div id="saleproduct-position" style="display: none"><?php echo $block->getSaleProductPosition();?></div>
+<div id="product-list-mode" style="display: none"><?php echo $block->getRequest()->getParam('product_list_mode'); ?></div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_ProductLabel/js/productlist":{}
+        }
+    }
+</script>

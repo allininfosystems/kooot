@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author ThaoPV <thaopw@gmail.com>
+ *
+ */
+-->
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router	id="standard">
+        <route	id="productlabel" frontName="productlabel">
+            <module	name="Magenest_ProductLabel"	/>
+        </route>
+    </router>
+</config>

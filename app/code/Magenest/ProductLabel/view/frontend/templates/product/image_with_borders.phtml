@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\Image */ ?>
+
+<span class="product-image-container"
+      style="width:<?php /* @escapeNotVerified */ echo $block->getWidth()?>px;">
+    <span class="product-image-wrapper"
+          style="padding-bottom: <?php /* @escapeNotVerified */ echo ($block->getRatio() * 100); ?>%;">
+        <img class="product-image-photo"
+             <?php /* @escapeNotVerified */ echo $block->getCustomAttributes(); ?>
+             src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+             width="<?php /* @escapeNotVerified */ echo $block->getResizedImageWidth(); ?>"
+             height="<?php /* @escapeNotVerified */ echo $block->getResizedImageHeight(); ?>"
+             alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>"/>
+    </span>
+
+    <?php if($_labelNew = $block->getData('label_new')):?>
+        <span class="new-product <?php /* @escapeNotVerified */ echo $_labelNew->getCategoryPosition()?>">
+            <img src="<?php /* @escapeNotVerified */ echo $_labelNew->getCategoryImageUrl()?>" alt="new label"/>
+    </span>
+    <?php endif;?>
+    <?php
+    /** @var \Magenest\ProductLabel\Model\Label $_labelSale */
+    if($_labelSale = $block->getData('label_sale')):?>
+        <?php $imgResize = $_labelSale->getImageSize()?>
+        <span class="sale-product <?php /* @escapeNotVerified */ echo $_labelSale->getCategoryPosition()?>" style="height: <?php echo $imgResize[1]?>px; width: <?php echo $imgResize[0]?>px;margin-top: -<?php echo (int)$imgResize[1]/2;?>px;margin-left: -<?php echo (int)$imgResize[0]/2;?>px;">
+           <img src="<?php /* @escapeNotVerified */ echo $_labelSale->getCategoryImageUrl()?>" alt="sale label"/>
+        </span>
+    <?php endif;?>
+</span>

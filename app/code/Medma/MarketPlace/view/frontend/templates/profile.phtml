@@ -1,0 +1,112 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+?>
+<?php $vendorInfo = $this->getVendorInfo(); ?>
+<?php $userObject = $this->getUserObject($vendorInfo->getUserId()); ?>
+<?php //$vendorRating = $this->getVendorRating(); ?>
+
+<div id="profile_wrapper">
+    <div id="user_profile">
+        <div id="user_image">
+           <?php $profileImage =  $block->getViewFileUrl('Medma_MarketPlace::images/default.jpg');
+			if ($vendorInfo->getImage()){
+					$profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $vendorInfo->getImage(); 
+			} ?>
+            <img src="<?php echo $profileImage; ?>" />
+        </div>
+
+        <div id="user_detail">
+            <h3 id="vendor_name"><b><a href="<?php echo $this->getVendorProfileUrl($vendorInfo->getEntityId()); ?>"><?php echo ucwords($vendorInfo->getShopName()); ?></a></b></h3>
+            <div id="membership_detail">
+                <p><?php echo $this->getMessage($vendorInfo,$userObject); ?></p>
+            </div>
+
+            <div id="option_wrapper">
+                <div class="contact-details-container">
+					<div class="contact-details"><b><?php echo __('Email: '); ?></b><?php echo $userObject->getEmail(); ?></div>
+					<div class="contact-details"><b><?php echo __('Phone: '); ?></b><?php echo $vendorInfo->getContactNumber(); ?></div>
+                </div>
+            </div>
+            <div>
+				
+				<?php 
+                if($this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInUser())
+                {
+					$customer_Id = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInUser();
+					$link = "add";
+					$txt = "Add to Favourite";
+					if($this->helper('\Medma\MarketPlace\Helper\Data')->checkSellerInFavorite($vendorInfo->getId(),$customer_Id))
+					{
+							$link = "remove";
+							$txt = "Remove From Favourite";
+					} 
+					?>
+					<div class="fields">
+					<button type="button" title="<?php echo $txt;?>" class="button favourite_button" onclick="window.location.href = '<?php echo $this->getUrl("marketplace/favourite/".$link."/id/".$vendorInfo->getId()."/"); ?>';" >     	
+						<span><span><?php echo __($txt); ?></span></span>
+					</button> 
+					
+					<button type="button" title="Give Feedback " class="button favourite_button" onclick="window.location.href = '<?php echo $this->getUrl("marketplace/vendor/feedback/id/".$vendorInfo->getId()."/"); ?>';">     	
+						<span><span><?php echo __('Give Feedback '); ?></span></span>
+					</button>  
+					</div>                     
+                <?php 
+                }
+                else 
+                { ?>        
+                    <div class="fields">
+					<button type="button" title="Add to Favourite" class="button favourite_button" onclick=" login()">     	
+						<span><span><?php echo __('Add to Favourite'); ?></span></span>
+					</button> 	
+					<!--   Review & Rating button         -->
+
+					<button type="button" title="Give Feedback " class="button favourite_button" onclick="login()">
+						<span><span><?php echo __('Give Feedback '); ?></span></span>
+					</button> 	
+					</div>
+		<?php 
+				} ?>
+				   
+                
+                
+            </div>
+
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="profile_bottom_link_wrapper" class="bottom">
+   <h5><span class="first">Member Since: <b><?php echo date("M j, Y", strtotime($userObject->getCreated())); ?></b></span> 
+    <span class="last location"><?php echo $this->getCountryName($vendorInfo->getCountry()); ?></span></h5>
+    <h3>Vendor's Products</h3>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $block->getPagerHtml() ?>
+</div>
+
+<?php if($this->getRequest()->getRouteName() == 'marketplace' && 
+			$this->getRequest()->getControllerName() == 'vendor' && 
+			$this->getRequest()->getActionName() == 'items') 
+		{ ?>
+<script>
+	window.addEventListener('load',
+		function load()
+		{
+				window.removeEventListener('load', load, false);
+				document.body.classList.remove('page-layout-1column');
+				document.body.className += " page-with-filter page-products catalog-category-view";
+		},
+		false);
+</script>
+<?php } ?>
+<style>
+
+</style>

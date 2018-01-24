@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_ImportExport:etc/export.xsd">
+    <entity name="catalog_product" label="Products" model="Magento\CatalogImportExport\Model\Export\Product" entityAttributeFilterType="catalog_product"/>
+    <entityType entity="catalog_product" name="simple" model="Magento\CatalogImportExport\Model\Export\Product\Type\Simple" />
+    <entityType entity="catalog_product" name="virtual" model="Magento\CatalogImportExport\Model\Export\Product\Type\Simple" />
+    <fileFormat name="csv" label="CSV" model="Magento\ImportExport\Model\Export\Adapter\Csv" />
+</config>

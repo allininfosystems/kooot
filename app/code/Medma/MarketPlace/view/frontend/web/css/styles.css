@@ -1,0 +1,376 @@
+#profile_wrapper{width:100%;float:left;}
+.form-create-account .note
+{
+    color:red;
+}
+#user_profile{width:100%;float:left;padding: 10px;opacity: 0.9;-webkit-box-shadow: 0px 0px 5px 2px rgba(119, 119, 119, 0.5);}
+#user_image{width:15%;float:left;padding: 10px;}
+#user_detail{width:50%;float:left;padding-left: 10px;}
+#profile_bottom_link_wrapper{width:100%;float:left;margin-top: 10px;}
+
+#membership_detail {
+    margin-top: 10px;
+    text-align: justify;
+}
+.customer_message
+{
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    float: left;
+}
+.msg
+{
+    width: 65%;
+    float: left;
+    padding: 10px;
+    margin-top: 15px;
+}
+#login-model
+{
+  display:none;
+}
+.customer_message
+{
+  box-shadow: 0 0 20px #000;
+  width:50%;
+}
+#user_profile
+{
+  box-shadow: 0 0 20px #000;
+}
+.msg
+{
+  font-family:serif;
+}
+.images
+{
+  border-radius:5px;
+}
+.date
+{
+font-weight:normal !important;
+}
+.transaction_msg
+{
+  border-radius:5px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.date
+{
+    padding-top: 10px;
+    text-align: right;
+    font-weight:bold;
+}
+.vendorreply
+{
+    width:50%;
+    border:1px solid #ccc;
+    padding:10px;
+    margin-top:20px;
+    float:left;
+    box-shadow: 0 0 20px #000;
+}
+#option_wrapper {
+    margin-bottom: 15px;
+}
+.profile_wrapper
+{
+  box-shadow: 10px 10px 5px grey;
+}
+#option_wrapper > a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding-left: 25px;
+    font-size: 12px;
+    display: block;
+    margin-top: 6px;
+}
+
+.marketplace-vendor-profile .favourite_button
+{
+    background: rgb(51, 153, 204);
+    display: inline-block;
+    padding: 7px 15px;
+    border: 0;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 19px;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+#option_wrapper > a.items {
+    background: url('images/items_icon.png') no-repeat 4px 2px;
+    background-size: 14px 14px;
+}
+
+#option_wrapper > a.contact {
+    background: url('images/contact_icon.png') no-repeat 4px 0px;
+    background-size: 14px 14px;
+}
+
+#vendor_products
+{
+    width:100%;
+    float:left;
+}
+
+#vendor_products
+{
+    width:100%;
+    float:left;
+    margin-top:20px;
+}
+
+#vendor_products #vendor_highest_selling_product
+{
+    width: 16%;
+    float: left;
+    text-align: center;
+}
+
+#vendor_products #vendor_highest_selling_product .heading
+{
+    color: rgb(0, 107, 180);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+#vendor_products #vendor_highest_selling_product .detail a
+{
+    width: 100%;Already Registered as seller?
+
+
+    float: left;
+    margin: 10px 0;
+}
+
+#vendor_products #latest_product
+{
+    width: 75%;
+    float: left;
+}
+
+#vendor_products #latest_product .heading
+{
+    color: rgb(0, 107, 180);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#vendor_products #latest_product .item
+{
+    width: 14%;
+    float: left;
+    text-align: center;
+    padding: 10px;
+    padding-top: 26px;
+}
+
+#vendor_products #latest_product .item .detail a
+{
+    width: 100%;
+    float: left;
+    margin: 5px 0;
+}
+
+.marketplace-vacation{
+    font-size:12px;float:left;color:red;
+}
+.wk-orderbox {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+    border-radius: 3px;
+}
+.wk-orderbox-content1 {
+    display: inline-block;
+    width: 98%;
+    border-bottom: 1px solid #ccc;
+}
+.wk-feedback-details {
+    float: left;
+    width: 65%;
+    padding-bottom: 5px;
+}
+.wk-feedback-details .mpfeedback {
+    width: 100%;
+    border-right: 1px solid #ccc;
+}
+.mpfeedback .price {
+    width: 100%;
+    display: inline-block;
+}
+.mpfeedback .wk-span {
+    width: 40%;
+}
+.mpfeedback span {
+    float: left;
+}
+.wk-ordertitle-label {
+    color: #6B6B63;
+}
+.mpfeedback .ratingslider-box {
+    background: url("../images/rating.png") repeat-x scroll 0 103% transparent;
+    float: left;
+    margin-left: 3%;
+    height: 20px;
+    width: 70px;
+}
+.wk-feedback-desc {
+    float: left;
+    width: 30%;
+    padding: 5px 0px 5px 15px;
+}
+.wk-orderbox-content2 {
+    display: inline-block;
+    width: 98%;
+}
+.wk-orderbox-details {
+    width: 78%;
+    float: left;
+}
+.mpfeedback .ratingslider-box .rating {
+    background: url("../images/rating.png") repeat-x scroll 0 4px transparent;
+    height: 20px;
+}
+.transaction_msg
+{
+    background: #1979c3;
+    float: left;
+    border: 1px solid #1979c3;
+    padding: 0px 10px;
+    box-shadow: 3px 3px 3px #CCC;
+    color: #fff;
+}
+.comments_reviews
+{
+    color:red;
+}
+.vendor-image{
+    width:100%;
+}
+.image-wrapper{
+    height:200px;
+}
+.vendor-item{
+margin-left:20px;
+margin-right:20px;
+}
+
+.vendor-details{
+text-align:center !important;
+}
+.report_contt .product-details .col-md-12
+{
+    width:100%;
+    float:left;
+    padding-left:15px;
+    line-height:2;
+}
+.msg
+{
+    width: 50%;
+    height: auto;
+    padding: 10px;
+    margin-top: 15px;
+}
+.date
+{
+    text-align: right;
+    font-weight:bold;
+}
+.vendor_reply
+{
+    margin-top:20px;
+}
+.vendorreply
+{
+    width:50%;
+    border:1px solid #ccc;
+    padding:10px;
+    margin-top:20px;
+    
+}
+
+.wk-clear{
+    clear:both;
+}
+
+.marketplace-vendor-register .login-content
+{
+    margin: 0px auto;
+    padding: 0px auto;
+    /* margin: 200px; */
+    /* margin-right: 0px; */
+    text-align: center;
+    /* vertical-align: top; */
+    padding: 20px 30px;
+    border-radius: 10px;
+    width:60% !important;
+    background-color: rgba(50,50,50,0.2);
+    min-width:232.797px;
+    max-width:357.109px;
+}
+.marketplace-vendor-register .login-content h2
+{
+    margin-top:0px !important;
+}
+.marketplace-vendor-register .seller-login-div
+{
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+.marketplace-vendor-register .seller-login-button
+{
+    background-image: none;
+    background: #1979c3;
+    border: 1px solid #1979c3;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 600;
+    padding: 15px 15px !important;
+    font-size: 26px !important;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 1200px) and (min-width: 319px) {
+    .marketplace-vendor-register .login-content
+    {
+        margin: 0px auto;
+    padding: 0px auto;
+    /* margin: 200px; */
+    /* margin-right: 0px; */
+    text-align: center;
+    /* vertical-align: top; */
+    padding: 20px 30px;
+    margin-top:25px;
+    border-radius: 10px;
+    width:60% !important;
+    min-width:232.797px;
+    background-color: rgba(50,50,50,0.2);
+    max-width:357.109px;
+    }
+    .marketplace-vendor-register .seller-login-div
+    {
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+
+
+
+
+

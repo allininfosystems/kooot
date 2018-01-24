@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Grid Grid List Layout
+ *
+ * @category    Webkul
+ * @package     Webkul_Grib
+ * @author      Webkul Software Private Limited
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	  <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+			<block class="Medma\MarketPlace\Block\Adminhtml\Transaction\Edit" name="transaction_edit"/>
+			 <referenceContainer name="left">
+				<block class="Medma\MarketPlace\Block\Adminhtml\Transaction\Edit\Tabs" name="transaction_edit_tabs">
+				<block class="Medma\MarketPlace\Block\Adminhtml\Transaction\Edit\Tab\Form" name="transaction_edit_tab_form"/>
+
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">form</argument>
+                    <argument name="block" xsi:type="string">transaction_edit_tab_form</argument>
+                </action>
+        
+            
+				<!--CedAddTab-->
+				</block>
+			
+				
+				 
+         
+			</referenceContainer>
+		
+        </referenceContainer>
+    </body>
+</page>

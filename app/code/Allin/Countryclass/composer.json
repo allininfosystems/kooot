@@ -1,0 +1,21 @@
+{
+    "name": "allin/module-countryclass",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Allin\\Countryclass\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

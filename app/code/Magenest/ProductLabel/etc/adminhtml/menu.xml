@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author ThaoPV <thaopw@gmail.com>
+ *
+ */
+-->
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_ProductLabel::label" title="Product Labels" module="Magenest_ProductLabel" sortOrder="60" parent="Magento_Catalog::catalog" resource="Magenest_ProductLabel::label"/>
+        <add id="Magenest_ProductLabel::label_rule" title="Manage Rules" module="Magenest_ProductLabel" sortOrder="60" parent="Magenest_ProductLabel::label" action="productlabel/label/" resource="Magenest_ProductLabel::rule"/>
+    </menu>
+</config>

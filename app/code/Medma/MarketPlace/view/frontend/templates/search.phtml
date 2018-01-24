@@ -1,0 +1,66 @@
+<?php 
+$vendors = $block->getVendorCollection();
+$text = $this->getRequest()->getParam('key');
+?>
+
+<form action="<?php echo $this->getUrl('marketplace/vendor/search')?>" method="get">
+<input type="text" name="key" value="<?php if($text){echo $text;}?>" id="searchtext" placeholder="Vendor Search....." style="width:50%;">
+
+</form>
+
+<?php if($text):?>
+<div class="vendor_list" <?php if($text):?> style="display:block;"<?php else:?>style="display:none;"<?php endif;?>>
+<?php if(count($block->getVendorCollection())>0):?>
+
+  <?php foreach($vendors as $vendor):?>
+  <?php $profile = $block->getProfile($vendor->getId());?>
+  <div id="profile_wrapper">
+	<?php
+	   $profileImage = $block->getViewFileUrl('Medma_MarketPlace::images/default.jpg');
+	   if ($profile->getImage()){
+				$profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $profile->getImage(); 
+	   }
+	?>
+    <div id="user_profile">
+       <div id="user_image">
+            <img src="<?php echo $profileImage ;?>">
+       </div>
+       <div id="user_detail">
+            <h3 id="vendor_name"><b><a href="<?php echo $this->getUrl("marketplace/vendor/profile/id/".$profile->getId()."/"); ?>"><?php echo $vendor->getName(); ?></a></b></h3>
+            <div id="membership_detail">
+                <p><?php echo $profile->getMessage(); ?></p>
+            </div>
+            <div id="option_wrapper">
+				<?php
+				  $id=$profile->getUserId();
+				  $email=$block->getEmail($id)
+				?>
+<!--
+                <a href="<?php //echo $this->getUrl("marketplace/vendor/items/id/".$profile->getId()."/"); ?>" class="items">Items for Sale</a>
+-->
+                <div class="contact-details-container">
+					<div class="contact-details"><b>Email: </b><?php echo $email; ?></div>
+					<div class="contact-details"><b>Phone: </b><?php echo $profile->getContactNumber(); ?></div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+  </div>
+  <?php endforeach;?>
+<?php else:?>
+		<span><?php echo __('No Search found!!!!')?></span>
+<?php endif;?>
+<div>
+<?php endif;?>
+<style>
+.vendor_list
+{
+	margin-top:20px;
+}
+.vendor_list #profile_wrapper {
+    width: 100%;
+    float: left;
+    margin-top:10px;
+}
+</style>

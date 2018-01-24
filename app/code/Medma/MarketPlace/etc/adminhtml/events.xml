@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+<event name="admin_system_config_changed_section_marketplace">
+    <observer name="setLayoutValue" instance="Medma\MarketPlace\Observer\SellerLayoutObserver"/>
+</event>
+<event name="catalog_product_save_after">
+        <observer name="productsearch" instance="Medma\MarketPlace\Observer\Productsearchobserver"/>
+</event>
+<event name="admin_system_config_changed_section_productsearch">
+        <observer name="custom_admin_system_config_changed_section_productsearch" instance="Medma\MarketPlace\Observer\ConfigObserver"/>
+</event>
+</config> 
+   

@@ -1,0 +1,29 @@
+<?php 
+$msgs = $block->getCollection();
+
+if(is_object($msgs)):
+?>
+	<?php foreach($msgs as $msg):?>
+		<?php if($msg->getType()=='customer'):?>
+			<div class="customer_message">
+				<p style="font-weight:bold;"><?php echo "Message To : "?><?php echo $block->getVendorName($msg->getMsgId())?></p>
+				<div class="msg"><?php echo $msg->getContent();?></div>
+				<div class="date"><?php echo $msg->getCreatedAt();?></div>
+			</div>
+
+		<?php else:?>
+			<div class="vendorreply">
+				<p style="font-weight:bold;"><?php echo "Reply from : "?><?php echo $block->getVendorName($msg->getMsgId())?></p>
+				<div><?php echo $msg->getContent();?>
+			     	<div class="date"><?php echo $msg->getCreatedAt();?></div>
+				</div>
+			</div>
+		
+		
+		<?php endif;?>
+	<?php endforeach;?>
+<?php else:
+	echo $msgs;
+	endif;
+?>
+

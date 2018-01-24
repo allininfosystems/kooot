@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">          
+    <update handle="editor"/>
+    <head>
+		<css src="Medma_MarketPlace::css/local.css" />
+    </head>
+    <body>
+         <referenceContainer name="content">
+            <block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit" name="test_custom_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit\Tabs" name="vendor_edit_tabs">
+				<block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit\Tab\Form" name="vendor_edit_tab_form"/>
+				<block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit\Tab\Profile" name="vendor_edit_tab_profile"/>
+                <block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit\Tab\PaypalPaymentInformation" name="vendor_edit_tab_paypal"/>
+                <block class="Medma\MarketPlace\Block\Adminhtml\Vendor\Edit\Tab\StripePaymentInformation" name="vendor_edit_tab_stripe"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">form_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_form</argument>
+                </action>
+               <action method="addTab">
+                    <argument name="name" xsi:type="string">profile_section</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_profile</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">paypal_payment_info</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_paypal</argument>
+                </action>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">stripe_payment_info</argument>
+                    <argument name="block" xsi:type="string">vendor_edit_tab_stripe</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+			
+				
+				 
+         
+        </referenceContainer>
+    </body>
+</page>
+

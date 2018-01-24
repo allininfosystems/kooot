@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category Magenest
+ * @package  Magenest_ProductLabel
+ * @author   ThaoPV <thaopw@gmail.com>
+ *
+ */
+-->
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magenest" translate="label" sortOrder="200">
+            <label>Magenest</label>
+        </tab>
+        <section id="product_labels" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"	showInStore="1">
+            <label>Product Labels</label>
+            <tab>magenest</tab>
+            <resource>Magenest_ProductLabel::config_productlabel</resource>
+            <group id="product_onsale" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product On Sale Label</label>
+                <field	id="display"	translate="label" type="select"  sortOrder="10" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                    <label>Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>Magenest\ProductLabel\Model\Config\Source\Position</source_model>
+                </field>
+                <field id="image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">productlabel/config/sale</upload_dir>
+                    <base_url type="media" scope_info="1">productlabel/config/sale</base_url>
+                </field>
+            </group>
+            <group id="category_onsale" translate="label" type="text" sortOrder="2" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                <label>Category On Sale Label</label>
+                <field id="display" translate="label" type="select"  sortOrder="10" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                    <label>Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>Magenest\ProductLabel\Model\Config\Source\Position</source_model>
+                </field>
+                <field id="image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">productlabel/config/sale</upload_dir>
+                    <base_url type="media" scope_info="1">productlabel/config/sale</base_url>
+                </field>
+            </group>
+            <group id="product_new" translate="label"	type="text"	sortOrder="3" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                <label>Product New Label</label>
+                <field	id="display" translate="label" type="select"  sortOrder="10" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                    <label>Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>Magenest\ProductLabel\Model\Config\Source\Position</source_model>
+                </field>
+                <field id="image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">productlabel/config/new</upload_dir>
+                    <base_url type="media" scope_info="1">productlabel/config/new</base_url>
+                </field>
+                <field id="days" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"	showInStore="1">
+                    <label>Days</label>
+                </field>
+            </group>
+            <group id="category_new" translate="label"	type="text"	sortOrder="4" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                <label>Category New Label</label>
+                <field	id="display" translate="label" type="select" sortOrder="10" showInDefault="1"	showInWebsite="1"	showInStore="1">
+                    <label>Display</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Position</label>
+                    <source_model>Magenest\ProductLabel\Model\Config\Source\Position</source_model>
+                </field>
+                <field id="image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">productlabel/config/new</upload_dir>
+                    <base_url type="media" scope_info="1">productlabel/config/new</base_url>
+                </field>
+                <field id="days" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Days</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

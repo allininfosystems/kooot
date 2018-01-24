@@ -1,0 +1,70 @@
+<?php 
+$msgs = $block->getMessages();
+$id = $this->getRequest()->getParam('id');
+?>
+<?php foreach($msgs as $msg):?>
+	<?php if($msg->getType()=='customer'):?>
+		<div class="customer_message">
+			<div class="msg"><?php echo $msg->getContent();?>
+		     	<p class="date"><?php echo $msg->getCreatedAt();?></p>
+			</div>
+		</div>
+	<?php else:?>
+		<div class="vendorreply">
+			<p style="font-weight:bold;"><?php echo "Reply from : "?><?php echo $block->getVendorName()?></p>
+			<div><?php echo $msg->getContent();?>
+		     	<p class="date"><?php echo $msg->getCreatedAt();?></p>
+			</div>
+		</div>
+	<?php endif;?>
+<?php endforeach;?>
+<div class="vendor_reply">
+
+<input type="hidden" value="<?php echo $id;?>" id="vendor_id">
+<!--
+	<input type="hidden" name="form_key" value="<?php //echo $block->getFormKey();?>">
+-->
+	  <div>
+	    <textarea  style="width:600px;height:100px;" id="reply"></textarea>
+	    <input type="hidden" value="" name="reply" id="htmltext">
+	 </div>
+		<button onclick="convertTohtml()" type="button"><span><?php echo __('Reply');?></span></button>
+		 <img id="addloader" style="display:none;width:30px;" src="<?php echo $block->getViewFileUrl('Medma_MarketPlace::images/35.gif');?>">
+</div>
+
+<style>
+
+</style>
+<script>
+function convertTohtml()
+{	
+	jQuery('#addloader').css('display','block');
+	var vendorid = document.getElementById('vendor_id').value;
+	//alert(vendorid);
+	var input = document.getElementById('reply');
+    var lines = input.value.split('\n');
+    var html = '';
+    for( var i=0; i<lines.length; i++ ) {
+
+        if( lines[i].indexOf('/')==-1 ) {
+            var models = lines[i].split('/');
+            html += '<p>' + models.join('</p></br>') ;
+        }
+    }
+    console.log(html);
+    //document.getElementById('htmltext').innerHtml=html;
+    jQuery.ajax({
+	method:'post',	
+	data:{
+		'id':vendorid,
+		'reply':html},	
+    url: "<?php echo $this->getUrl('admin_marketplace/vendor/reply');?>"+'id/'+vendorid,
+    success:function(data) {
+	    jQuery('#addloader').css('display','none');
+	location.reload();
+	//alert('success');
+      },
+  });
+}
+</script>
+

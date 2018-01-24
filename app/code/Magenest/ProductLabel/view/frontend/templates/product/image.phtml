@@ -1,0 +1,36 @@
+<?php
+/**
+* Copyright © 2015 Magenest. All rights reserved.
+* See COPYING.txt for license details.
+*
+*
+* Magenest_ProductLabel extension
+* NOTICE OF LICENSE
+*
+* @category  Magenest
+* @package   Magenest_ProductLabel
+* @author ThaoPV <thaopw@gmail.com>
+*
+*/
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\Image */ ?>
+
+<img class="photo image"
+     <?php /* @escapeNotVerified */ echo $block->getCustomAttributes(); ?>
+     src="<?php /* @escapeNotVerified */ echo $block->getImageUrl(); ?>"
+     width="<?php /* @escapeNotVerified */ echo $block->getWidth(); ?>"
+     height="<?php /* @escapeNotVerified */ echo $block->getHeight(); ?>"
+     alt="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLabel(), null, true); ?>" />
+
+<?php if($_labelNew = $block->getData('label_new')):?>
+     <span class="new-product <?php /* @escapeNotVerified */ echo $_labelNew->getCategoryPosition()?>">
+            <img src="<?php /* @escapeNotVerified */ echo $_labelNew->getCategoryImageUrl()?>" alt="new label"/>
+    </span>
+<?php endif;?>
+<?php
+/** @var \Magenest\ProductLabel\Model\Label $_labelSale */
+if($_labelSale = $block->getData('label_sale')):?>
+     <span class="sale-product <?php /* @escapeNotVerified */ echo $_labelSale->getCategoryPosition()?>">
+            <img src="<?php /* @escapeNotVerified */ echo $_labelSale->getCategoryImageUrl()?>" alt="sale label"/>
+        </span>
+<?php endif;?>

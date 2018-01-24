@@ -1,0 +1,73 @@
+<?php 	
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+ 
+if($this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInUser())
+{	
+	$profileCollection = $block->getFavouriteVendors();
+	
+	if ($profileCollection->count() == 0): ?>
+    <p><?php echo __('You have no sellers added.'); ?></p>
+	
+	<?php else: 
+	foreach($profileCollection as $vendorInfo):
+		$profileImage = $block->getViewFileUr('Medma_Productsearch::images/default.jpg');
+		
+		if ($vendorInfo->getImage()){
+				$profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $vendorInfo->getImage(); 
+		}
+		
+		$userObject = $block->getUserObject($vendorInfo->getUserId()); 
+?>
+
+<div id="profile_wrapper">
+    <div id="user_profile">
+        <div id="user_image">
+                 <img src="<?php echo $profileImage ;?>">
+        </div>
+
+        <div id="user_detail">
+            <h3 id="vendor_name"><b><a href="<?php echo $this->getUrl("marketplace/vendor/profile/id/".$vendorInfo->getId()."/"); ?>"><?php echo $vendorInfo->getShopName(); ?></a></b></h3>
+            <div id="membership_detail">
+                <p><?php echo $block->getMessage($vendorInfo,$userObject); ?></p>
+            </div>
+
+
+
+            <div id="option_wrapper">
+              
+                <div class="contact-details-container">
+					<div class="contact-details"><b>Email: </b><?php echo $userObject->getEmail(); ?></div>
+					<div class="contact-details"><b>Phone: </b><?php echo $vendorInfo->getContactNumber(); ?></div>
+                </div>
+            </div>
+            <div>
+                <button type="button" title="Remove From Favourite" class="button favourite_button" onclick="window.location.href = '<?php echo $this->getUrl("marketplace/favourite/remove/id/".$vendorInfo->getId()."/"); ?>';">
+                    <span><span>Remove from Favourite</span></span>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+    <?php endforeach; ?>
+<?php endif; 
+}
+else
+{
+		?>
+		<p><?php echo __('Please login to view the sellers.'); ?></p>
+		<?php
+}
+?>

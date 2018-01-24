@@ -1,0 +1,102 @@
+<?php
+$productcollections  = $block->getProductCollection();
+?>
+<div class="vendor_list">
+	<?php foreach($productcollections as $productcollection):?>
+		<?php
+			$product = $block->getProduct($productcollection->getId());
+			if($product->getVendor())
+			{
+				$product->getVendor();
+				$user = $block->getUser($product->getVendor());
+				$profile = $block->getProfile($product->getVendor());
+				
+			}
+		?>
+ 		<?php if($product->getVendor()!= NULL):?>
+ 		<?php  if($user->getIsActive()): ?>
+ 		<?php  if($user->getIsActive()  == '1'):?>
+ 		<?php if($profile->getId() != NULL):?>
+ 		<div class="vendor-description">
+		<input type="hidden" value="<?php echo $product->getId();?>" id="product_id">
+       <h3 class="vendor_name"><b><a href="<?php echo $this->getUrl("marketplace/vendor/profile/id/".$profile->getId()."/"); ?>"><?php echo $user->getName() ?></a></b></h3>
+		<div style="float:left;padding-left: 10px;"> 
+			<div class="product_price"><a href="<?php echo $product->getProductUrl()?>"><?php echo $product->getName();?></a></div>
+		</div>		
+		<div  style="float:left;padding-left: 10px;">		
+		  <div class="product_price"><?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($product->getFinalPrice());?></div>
+		</div> 
+        <div class="short_description"><p><?php echo $product->getShortDescription();?></p></div>
+        <div style="width:50%;float:right;margin-bottom: 5px;">
+            
+       
+			<div class="custom_addtocart">
+					<button type="button" title="<?php echo __('Buy Now') ?>" class="action primary tocart" onclick="buynow('<?php echo $product->getProductUrl()?>')">
+						<span><?php echo __('Buy Now') ?></span>
+					 </button>	
+					 <img id="addloader_<?php echo $product->getId();?>" style="display:none;width:30px;float:right" src="<?php echo $block->getViewFileUrl('Medma_MarketPlace::images/35.gif');?>">
+            </div>  
+        </div>
+        </div>
+        <style>
+.vendor-description
+{
+	width:100%;float:left;border:1px solid #ccc;opacity: 0.9;margin-bottom: 10px;
+	/*display: none;*/
+	}	
+.price-wrapper
+{
+	float:left;padding-left: 10px;
+	}
+.vendor_name
+{
+	padding-left: 10px;
+}	
+.product_price
+{
+    font-weight: bold;
+    font-size: 15px;
+}
+.sellerimage
+{
+	width:100px;
+}
+.custom_addtocart
+{
+	margin-left:20px;
+    width: 50%;
+    float: right;
+    margin-top:-5px;
+}
+.custom_qty
+{
+	float: left;
+}
+.short_description
+{
+	float:left;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.qty-wrapper
+{
+	width:50%;float:right;margin-bottom: 5px;
+	}
+</style>
+        <?php endif; ?>
+        <?php endif;?>
+        <?php endif; ?>
+        <?php endif; ?>
+	<?php endforeach;?>
+</div>
+<script>
+function buynow(url){
+	window.location.href=url;
+}
+</script>
+<style>
+.modal-popup .modal-footer
+{
+	display:block;
+	}
+</style>

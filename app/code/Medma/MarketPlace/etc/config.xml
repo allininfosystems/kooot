@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+		  <marketplace>
+			<general>
+				<product_view_layout>2columns-right</product_view_layout>
+				<display_seller_information_on_frontend>1</display_seller_information_on_frontend>
+				<shop_info_display>product_info</shop_info_display>
+			</general>
+            <review_options>
+                <page_size>3,6,9</page_size>
+            </review_options>
+            <vendor_registration>
+				<files_allowed>jpg, jpeg, pdf, png</files_allowed>
+				<max_allowed_file_size>4</max_allowed_file_size>
+				<request_seller_top_link>1</request_seller_top_link>
+				<request_seller_label>Request Seller</request_seller_label>
+            </vendor_registration>
+            <email>
+                <email_sender>sales</email_sender>
+              
+                <email_template>marketplace_email_email_template</email_template>
+            </email>
+            <vendor_registration_email>
+				<enable_registration_email>1</enable_registration_email>
+				<email_receiver>sales</email_receiver>
+				<email_template>marketplace_vendor_registration_email_email_template</email_template>
+            </vendor_registration_email>
+            <vendor_activation_email>
+				<active_vendor_email>1</active_vendor_email>
+				<email_template>marketplace_vendor_activation_email_email_template</email_template>
+            </vendor_activation_email>
+            <registration_confirmation_email>
+				<enabled>1</enabled>
+				<email_template>marketplace_registration_confirmation_email_email_template</email_template>
+            </registration_confirmation_email>
+        </marketplace>
+        
+        <productsearch>
+			<vendor>
+				<search>1</search>
+				<vendorlabel>Vendor Search</vendorlabel>
+			</vendor>
+			<general>
+				<extension_status>1</extension_status>
+				<enabled_first>0</enabled_first>
+			</general>
+		</productsearch>
+        <messaging>
+			<general>
+				<extension_status>1</extension_status>
+			</general>
+		</messaging>
+        <report>
+            <general>
+				<enabled>1</enabled>
+                <to>admin@store.com</to>
+                <copy_to>admin@store.com</copy_to>
+                <bcc_to>admin@store.com</bcc_to>
+            </general>
+        </report>
+        <carriers>
+            <marketplaceshipping>
+                <active>1</active>
+                <allowed_methods>delivery</allowed_methods>
+                <methods>delivery</methods>
+                <sallowspecific>0</sallowspecific>
+                <model>Medma\MarketPlace\Model\Carrier\Shipping</model>
+                <name>Medma MarketPlace Shipping</name>
+                <price>10.00</price>
+                <title>Medma MarketPlace Shipping</title>
+                <handling_type>F</handling_type>
+                <specific_error_msg>This shipping method is not available. To use this shipping method, please contact us.</specific_error_msg>
+            </marketplaceshipping>
+        </carriers>
+    </default>
+</config>

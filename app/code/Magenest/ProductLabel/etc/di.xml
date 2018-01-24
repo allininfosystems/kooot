@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author ThaoPV <thaopw@gmail.com>
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magenest\ProductLabel\Model\ResourceModel\Grid\Label" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magenest_productlabel_rule</argument>
+            <argument name="resourceModel" xsi:type="string">Magenest\ProductLabel\Model\ResourceModel\Label</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="productlabel_label_listing_data_source" xsi:type="string">Magenest\ProductLabel\Model\ResourceModel\Grid\Label</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Catalog\Block\Product\ImageBuilder" type="Magenest\ProductLabel\Block\Product\ImageBuilder"/>
+</config>

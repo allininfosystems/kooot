@@ -1,0 +1,31 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */	
+$cartSellerVacation = $block->getCartSellerVacation();
+$vacation_message = __("Vendor of this product is on Vacation so it will be delivered after some time");
+?>
+<script>
+	jQuery(document).ready(function(){	
+		var txt_msg = '<span class="marketplace-vacation"><?php echo $vacation_message;?></span>';
+	<?php
+	if(count($cartSellerVacation)>0){ 
+		foreach($cartSellerVacation as $cartSeller)
+		{
+			if($cartSeller["vacation_mode"]==1){
+	?>
+				var id = "cart-<?php echo $cartSeller["id"];?>-qty";
+				jQuery(txt_msg).insertAfter("#"+id);				
+	<?php 
+			}
+		}
+	 } ?>	
+	});
+</script>

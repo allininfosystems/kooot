@@ -1,0 +1,66 @@
+<hr>
+<h2><?php echo __('Our Vendors'); ?></h2>
+
+<?php
+	$vendors = $block->getVendorList();
+	
+	if(empty($vendors)){
+	
+		?>
+			<p><?php echo __("No Vendors");?></p>
+		<?php
+	}	
+	else{
+		
+		?>
+		
+		<div class="products wrapper grid products-grid">
+			<ol class="products list items product-items">
+		 <?php  foreach ($vendors as $vendor): 
+		if($block->getVendorStatus($vendor['user_id']))
+		{
+					$status = $block->getVendorStatus($vendor['user_id']);
+					//echo $status['is_active'];
+					if( $status['is_active'] ) {
+				?>
+		 <li class="item product product-item vendor-item">
+			 <div class="product-item-info" data-container="product-grid">
+				 
+				 
+				 
+				 <?php
+				 $profileImage = $block->getViewFileUrl('Medma_MarketPlace::images/default.jpg');
+					if ($vendor['image'] != ''){
+							$profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $vendor['image']; 
+							?>
+							
+							<?php
+						 }
+						 
+				 ?>
+				<a href="<?php echo $this->getVendorProfileUrl($vendor['entity_id']);?>" class="product photo product-item-photo" tabindex="-1">
+                  <span class="product-image-container" style="width:240px;">
+                    <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                      <img class="product-image-photo" src="<?php echo $profileImage; ?>" >
+                    </span>
+                  </span>
+                </a>
+			  <div class="product details product-item-details vendor-details">
+				  <strong><a href="<?php echo $this->getVendorProfileUrl($vendor['entity_id']);?>" > <?php  echo $vendor['shop_name'];	?></a></strong>
+			  </div>
+			 </div> 
+		 </li>
+			
+				
+			
+		
+	<?php
+		}
+	}
+ endforeach; 
+?>
+</ol>
+</div>
+<?php
+}
+?>

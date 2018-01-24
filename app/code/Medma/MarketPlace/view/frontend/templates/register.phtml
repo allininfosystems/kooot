@@ -1,0 +1,242 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */ 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$session =$objectManager->create('Magento\Framework\Session\SessionManager');
+
+if($session->getVendorData())
+{
+$vendorsession = $session->getVendorData();
+}else
+{
+	$vendorsession = null;
+}
+
+$countryObject = $objectManager->create('Magento\Directory\Model\Config\Source\Country'); 
+$countries = $countryObject->toOptionArray();
+$priceObject = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+
+$proofCollection = $block->getProofTypes();
+
+
+	$dir_name = 'vendor/varifications';
+	$this->helper('\Medma\MarketPlace\Helper\Data')->getImagesDir($dir_name);
+	
+	$total_file_upload = 0;
+
+?>
+
+<div style='width:100%;float:left;margin-bottom:15px;'>
+	<form class="form create account form-create-account" enctype="multipart/form-data" action="<?php echo $block->getPostActionUrl() ?>" data-mage-init='{"validation":{}}' method="post" style="display:inline-block">
+    <fieldset class="fieldset create info">
+        <legend class="legend"><span><?php echo __('Personal Information'); ?></span></legend><br>
+        
+
+        <div class="field firstname required">
+            <label class="label" for="firstname"><span><?php echo __('First Name'); ?></span></label>
+            <div class="control">
+                <input type="text" id="firstname" name="firstname" onKeyDown="validate(this.id,'<?php echo __('First name'); ?>',15)" maxlength="15" value="<?php if($vendorsession['firstname']){ echo $vendorsession['firstname'];}?>" title="<?php echo __('First Name'); ?>" class="input-text required-entry" data-validate="{required:true}"  aria-required="true">
+				<div class="note" id="firstnamepromptmsg"></div>
+            </div>
+        </div>
+        
+        <div class="field lastname required">
+            <label class="label" for="lastname"><span><?php echo __('Last Name'); ?></span></label>
+            <div class="control">
+                <input type="text" id="lastname" name="lastname" onKeyDown="validate(this.id,'<?php echo __('Last name'); ?>',15)"  maxlength="15" value="<?php if($vendorsession['lastname']){ echo $vendorsession['lastname'];}?>" title="<?php echo __('Last Name'); ?></" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+				<div class="note" id="lastnamepromptmsg"></div>
+           </div>
+        </div>
+    
+        <div class="field required">
+            <label for="email_address" class="label"><span><?php echo __('Email Address'); ?></span></label>
+            <div class="control">
+                <input type="email" name="email" id="email_address"value="<?php if($vendorsession['email']){ echo $vendorsession['email'];}?>" title="<?php echo __('Email Address') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+            </div>
+        </div>
+        
+        <legend class="legend"><span><?php echo __('Business Information'); ?></span></legend><br>
+        
+        <div class="field field-name-lastname required">
+            <label class="label" for="shop_name"><span><?php echo __('Shop Name'); ?></span></label>
+            <div class="control">
+                <input type="text" id="shop_name" name="shop_name"  onKeyDown="validate(this.id,'<?php echo __('Shop name'); ?>',20)" maxlength="20" value="<?php if($vendorsession['shop_name']){ echo $vendorsession['shop_name'];}?>" title="<?php echo __('Shop Name'); ?></" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+				<div class="note" id="shop_namepromptmsg"></div>
+            </div>
+        </div>
+        
+        <div class="field field-name-lastname required">
+            <label class="label" for="contact_number"><span><?php echo __('Contact Number'); ?></span></label>
+            <div class="control">
+                <input id="contact_number" name="contact_number" value="<?php if($vendorsession['contact_number']){ echo $vendorsession['contact_number'];}?>" onKeyDown="validatenumber(this.id,'<?php echo __('Contact number') ?>',12)"  maxlength="12" title="<?php echo __('Contact Number'); ?></" class="required-entry" type="number" data-validate="{required:true}" aria-required="true">
+					<div class="note" id="contactnumpromptmsg"></div>
+            </div>
+        </div>
+        
+        
+        <div class="field required">
+            <label for="country" class="label"><span><?php echo __('Country'); ?></span></label>
+            <div class="control">
+                <select name="country" id="country" title="<?php echo __('Country'); ?>"  class="input-text required-entry" data-validate="{required:true}" aria-required="true"> 
+					<?php foreach($countries as $value=>$key):?>
+							<option <?php if($vendorsession['country']==$key['value']):?>selected='selected'<?php endif;?> value="<?php echo $key['value'];?>"><?php echo $key['label']; ?></option>
+					<?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        
+        <?php if($proofCollection->getSize()>0){ 
+				$total_file_upload = 1; ?>
+        <legend class="legend"><span><?php echo __('Verification Proof'); ?></span></legend><br>
+			
+		<div class="field required">
+            <label for="proof_type" class="label"><span><?php echo __('Proof Type'); ?></span></label>
+            <div class="control">
+                <select name="proof_type" id="proof_type" title="<?php echo __('Proof Type'); ?>">
+					<option value="">-<?php echo __('Select'); ?>-</option>
+					<?php foreach($proofCollection->getData() as $proofData):?>
+							<option <?php if($vendorsession['proof_type']==$proofData['entity_id']):?>selected='selected'<?php endif;?>   value="<?php echo $proofData['entity_id'];?>"><?php echo $proofData['name']; ?></option>
+					<?php endforeach;?>
+                </select>
+            </div>
+        </div>
+        
+        <div class="field field-name-lastname required">
+            <label class="label" for="contact_number"><span><?php echo __('Files'); ?></span></label><span class="note"><?php echo __('( supported format PNG, JPEG, JPG, BMP)');?></span>
+            <div id="verification_proof_container">
+				<div class="control">
+					<input  title="<?php echo __('Files'); ?>" type="file" name="varification_proof_1" id="varification_proof_1"  class="input-text required-entry" data-validate="{required:true}" aria-required="true" />
+				</div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="field field-name-lastname required">
+            <div class="control">
+                <button type="button" title="<?php echo __('Add New') ?>" class="action submit primary" onclick="addNewFileUpload()">
+					<span><span><?php echo __('Add New'); ?></span></span>
+				</button>
+            </div>
+        </div>
+        
+		<?php } ?>
+		
+		<input type="hidden" name="total_file_upload" id="total_file_upload" value="<?php echo $total_file_upload;?>">
+        
+        <legend class="legend"><span><?php echo __('Login Information'); ?></span></legend><br>
+        
+        <div class="field required">
+            <label for="username" class="label"><span><?php echo __('User Name'); ?></span></label>
+            <div class="control">
+                <input name="username" value="<?php if($vendorsession['username']){ echo $vendorsession['username'];}?>" id="username" type="text" class="input-text" title="<?php echo __('User Name') ?>" data-validate="{required:true}" aria-required="true"> 
+            </div>
+        </div>
+        
+        <div class="field required">
+            <label for="password" class="label"><span><?php echo __('Password'); ?></span></label><span class="note"><?php echo __('( Your password must include both numeric and alphabetic characters)');?></span>
+            <div class="control">
+                <input type="password" name="password" id="password" title="<?php echo __('Password') ?>" class="input-text" data-validate="{required:true}" aria-required="true"> 
+            </div>
+        </div>
+        
+        <div class="field required">
+            <label for="confirmation" class="label"><span><?php echo __('Confirm Password'); ?></span></label>
+            <div class="control">
+                <input type="password" name="confirmation" onblur="validatepassword()" id="confirmation"  title="<?php echo __('Confirm Password') ?>" class="input-text" data-validate="{required:true}" aria-required="true"> 
+				<div class="note" id="passwordmsg"></div>
+            </div>
+        </div>
+        
+        
+        
+        
+                                
+      </fieldset>
+      
+      
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Save"><span><?php echo __('Save'); ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?php echo $this->getUrl(); ?>"><span><?php echo __('Back'); ?></span></a>
+        </div>
+    </div>
+</form>
+<div class="seller-login-div">
+    <div class="login-content">
+        <h2 class="heading">Already Registered  as seller?</h2>
+        <?php ?>
+        <form action="<?php echo $this->helper('\Medma\MarketPlace\Helper\Data')->getSellerUrl();?>">
+            <button type="submit" class="action primary seller-login-button">Log In as Seller</button>
+        </form>
+    </div>
+</div>
+
+	<script type="text/javascript">
+        function addNewFileUpload()
+        {
+			var total_file_upload = jQuery('#total_file_upload').val();
+			total_file_upload = parseInt(total_file_upload)+1;
+			
+			var content = '<br><div class="control"><input  title="<?php echo __('Files'); ?>" type="file" name="varification_proof_'+total_file_upload+'" id="varification_proof_'+total_file_upload+'"  class="input-text required-entry" data-validate="{required:true}" aria-required="true" /></div>';
+			
+			jQuery('#verification_proof_container').append(content);
+			
+			jQuery('#total_file_upload').val(total_file_upload);
+		}
+		function validate(id,field,limit)
+		{
+			console.log('#'+id);
+			value = jQuery('#'+id).val();
+			console.log(value.length+'======='+limit);
+			if(value.length==limit)
+			{
+			jQuery('#'+id+'promptmsg').html(field+' must contain '+limit+' characters');
+			jQuery('div #'+id+'promptmsg').css('display','block');
+			}
+			else
+			{
+				jQuery('div #'+id+'promptmsg').css('display','none');
+			}
+		}
+		function validatenumber(id,field,limit)
+		{
+			console.log('#'+id);
+			var value = jQuery('#'+id).val();
+			if (value.length>=limit) {
+				console.log(value.length+'======='+limit);
+				jQuery('#contactnumpromptmsg').html('Invalid contact number');
+				jQuery('#contactnumpromptmsg').css('display','block');
+			} else {
+				jQuery('#contactnumpromptmsg').css('display','none');
+			}
+		}
+		function validatepassword()
+		{
+			 var password = document.getElementById("password").value;
+			 var confirmPassword = document.getElementById("confirmation").value;
+			 if (password != confirmPassword) 
+			 {
+				jQuery('#passwordmsg').html('Passwords do not match.');
+				jQuery('#passwordmsg').css('display','block');
+			 }
+			 else
+			 {
+				 jQuery('#passwordmsg').css('display','none');
+			 }
+
+		}
+
+    </script>
+</div>
+<?php $session->destroy();?>

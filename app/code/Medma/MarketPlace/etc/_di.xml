@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        
+	<virtualType name="DataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>   
+   <virtualType name="DataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Medma\MarketPlace\Model\ResourceModel\Profile\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DataProviderFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="DataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Medma\MarketPlace\Model\ResourceModel\Prooftype\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DataProviderFilterPool</argument>
+        </arguments>
+    </virtualType>
+     <virtualType name="Medma\MarketPlace\Model\ResourceModel\Profile\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">medma_marketplace_profile</argument>
+            <argument name="resourceModel" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Profile</argument>
+        </arguments>
+    </virtualType>
+      <virtualType name="Medma\MarketPlace\Model\ResourceModel\Prooftype\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">medma_marketplace_prooftype</argument>
+            <argument name="resourceModel" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Prooftype</argument>
+        </arguments>
+    </virtualType>
+      <virtualType name="Medma\MarketPlace\Model\ResourceModel\Feedback\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">medma_marketplace_review_rating</argument>
+            <argument name="resourceModel" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Feedback</argument>
+        </arguments>
+    </virtualType>
+  
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="admin_marketplace_record_vendor_list_data_source" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Profile\Collection</item>
+                <item name="admin_marketplace_record_prooftype_list_data_source" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Prooftype\Collection</item>
+				<item name="admin_marketplace_record_pendingproduct_list_data_source" xsi:type="string">Magento\Catalog\Model\ResourceModel\Product\Collection</item>
+				<item name="admin_marketplace_record_approvedproduct_list_data_source" xsi:type="string">Magento\Catalog\Model\ResourceModel\Product\Collection</item>
+				<item name="admin_marketplace_feedback_grid_data_source" xsi:type="string">Medma\MarketPlace\Model\ResourceModel\Feedback\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Save">
+        <plugin name="massdisabledisapproved" type="Medma\MarketPlace\Plugin\MassDisableDisapproved" disabled="false" sortOrder="1"/>
+    </type> 
+    
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="disabledisapproved" type="Medma\MarketPlace\Plugin\DisableDisapproved" disabled="false" sortOrder="1"/>
+    </type> 
+    <preference for="Magento\Integration\Plugin\Model\AdminUser" type="Medma\MarketPlace\Controller\Vendor\NegateRevoke" />
+    <preference for="Magento\Catalog\Block\Adminhtml\Product\Grid" type="Medma\MarketPlace\Block\Adminhtml\Product\Grid" /><preference for="Magento\Catalog\Block\Product\Widget\NewWidget" type="Medma\MarketPlace\Block\Product\Widget\NewWidget" /><preference for="Magento\CatalogWidget\Block\Product\ProductsList" type="Medma\MarketPlace\Block\Product\ProductsList" />
+	<preference for="Magento\Catalog\Block\Product\ListProduct" type="Medma\MarketPlace\Block\Profile\Items" />
+	<preference for="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider" type="Medma\MarketPlace\Ui\DataProvider\Product\VendorProductDataProvider" />
+	<preference for="Magento\ImportExport\Block\Adminhtml\Import\Edit\Form" type="Medma\MarketPlace\Block\Adminhtml\Import\Edit\Form" />
+	<preference for="Magento\ImportExport\Block\Adminhtml\Export\Edit\Form" type="Medma\MarketPlace\Block\Adminhtml\Export\Edit\Form" />
+	<preference for="Magento\CatalogSearch\Block\SearchResult\ListProduct" type="Medma\MarketPlace\Block\Product\ListProduct" />
+	<preference for="Magento\CatalogSearch\Controller\Result\Index" type="Medma\MarketPlace\Controller\Result\Index" />
+	<preference for="\Magento\Framework\Mail\Template\TransportBuilder" type="\Medma\MarketPlace\Model\Mail\TransportBuilder" />
+	<preference for="Magento\CatalogImportExport\Model\Import\Product" type="\Medma\MarketPlace\Model\CatalogImportExport\Product" />
+	<preference for="Magento\CatalogImportExport\Model\Import\Product\CategoryProcessor" type="Medma\MarketPlace\Model\CatalogImportExport\CategoryProcessor" />
+    <preference for="Magento\Catalog\Helper\Product\View" type="Medma\MarketPlace\Helper\ViewLayout" />
+    <preference for="Magento\Catalog\Controller\Adminhtml\Product\MassStatus" type="Medma\MarketPlace\Controller\Adminhtml\Product\MassStatus" />
+    <preference for="Magento\Catalog\Controller\Adminhtml\Product\MassDelete" type="Medma\MarketPlace\Controller\Adminhtml\Product\MassDelete" />
+</config>

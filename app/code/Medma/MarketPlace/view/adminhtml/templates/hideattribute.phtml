@@ -1,0 +1,44 @@
+<?php 
+$role_id = $this->helper('\Medma\MarketPlace\Helper\Data')->getConfig('general', 'vendor_role');
+$current_adminuser = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInAdminUser();
+if($role_id == $current_adminuser): ?>
+<style>
+fieldset[data-index=container_category_ids] button[data-index=create_category_button], button#addAttribute, div.select-attributes-actions{
+	display:none;
+}
+
+[data-index = approved] {
+    display: none;
+}
+
+
+[data-index = review] {
+    display: none;
+}
+[data-index = vendor] {
+    display: none;
+}
+
+[data-attribute-code = vendor]
+{
+	display: none;
+}
+
+[data-attribute-code = approved	]
+{
+	display: none;
+}
+
+</style>
+<?php endif; ?>
+<style>	
+	[data-index = name_keyword] {
+    display: none;
+}
+
+[data-attribute-code = name_keyword]
+{
+	display: none;
+}
+
+</style>

@@ -1,0 +1,105 @@
+<?php 
+$vendorid = $this->getRequest()->getParam('id'); 
+?>    
+<?php if($this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInUser()):?>
+<script>
+require(['jquery'],function($){
+   $('.fields').append('<button id="send_msg"  class="button favourite_button" type="button"><span><?php echo __('Send Message');?></span></button>')
+	$('#send_msg').click(function() {	
+	window.location = '<?php echo $this->getUrl('marketplace/vendor/sendmsg/').'id/'.$vendorid?>';
+	});
+});	
+</script>
+
+<?php else:?>
+<div id="login-model">
+  <div class="block block-customer-login">
+    <div class="block-title">
+        <strong id="block-customer-login-heading" role="heading" aria-level="2"><?php /* @escapeNotVerified */ echo __('Registered Customers') ?></strong>
+    </div>
+
+	<input type="hidden" name="form_key" id="form_key" value="<?php echo $block->getFormKey(); ?>">
+            <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+              
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
+                    <div class="control">
+                        <input name="login[username]" value="<?php //echo $block->escapeHtml($block->getUsername()) ?>" id="email_id" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="pass" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
+                    <div class="control">
+                        <input name="login[password]" type="password"  class="input-text" id="password" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}">
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="button" onclick="signin()" class="action login primary" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
+                </div>
+                <div id='loaderImage' style="display:none;position:absolute;top:50%;left:50%;z-index:1000">
+				  <img src = '<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>'/>
+				</div>
+            </fieldset>
+    </div>
+</div>
+
+</div>
+<script>
+require(['jquery'],function($){	
+jQuery( document ).ready(function() {
+   jQuery('.fields').append('<button id="send_msg" onclick="login()" class="button favourite_button" type="button"><span><?php echo __('Send Message');?></span></button>')
+	
+});
+});
+
+function login(){
+  require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'Log In'
+              
+            };
+
+            var popup = modal(options, $('#login-model'));
+
+            $('#login-model').modal(options).modal('openModal');
+             
+        }
+    );
+}
+function signin()
+{ 
+    jQuery('#loaderImage').css('display','block');
+    jQuery('#loaderImage').bind('ajaxStart', function(){
+    jQuery(this).show();
+}).bind('ajaxStop', function(){
+    jQuery(this).hide();
+});
+	var email = jQuery('#email_id').val();
+	var form_key = jQuery('#form_key').val();
+	var pass = jQuery('#password').val();
+	jQuery.ajax({ 
+	method:'post',	
+	data:{'form_key':form_key,'login[username]':email,'login[password]':pass},	
+    url: "<?php echo $this->getUrl('customer/account/loginPost');?>",
+    success:function(data) {	
+		location.reload();
+      },
+  });
+ 
+}
+</script>
+<?php endif;?>
+<style>
+	
+</style>	

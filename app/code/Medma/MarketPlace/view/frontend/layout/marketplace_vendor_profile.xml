@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <head>
+	<title>Seller Profile</title>  
+	<css src='Medma_MarketPlace::css/vendor.css' />
+ </head>
+ <body>
+	<referenceContainer name="content">
+		<block class="Medma\MarketPlace\Block\Profile" name="vendor.profile" template="Medma_MarketPlace::profile.phtml"/>
+		<block class="Medma\MarketPlace\Block\Profile\VendorItems" name="marketplace.vendor.profile.items" template="Medma_MarketPlace::product/list.phtml"/>
+	</referenceContainer>
+	<referenceBlock name="before.body.end">
+		    <block class="Medma\MarketPlace\Block\Button" ifconfig="messaging/general/extension_status" name="message.button" template="Medma_MarketPlace::button.phtml"/>	
+	    </referenceBlock>
+ </body>
+</page>

@@ -1,0 +1,296 @@
+.container {
+    
+}
+#success_message{ display: none;float:left;width:100%;}
+.container .form-horizontal .product_img_btn
+{
+    background-color: rgba(255, 0, 0, 0.83);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 0px;
+    border-radius: 0px;
+    width: 35%;
+    padding: 8px;
+    text-align: center;
+   
+    margin:0 auto;
+}
+.container .form-horizontal .product_details_btn
+{
+    background-color: rgba(255, 0, 0, 0.83);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 0px;
+    border-radius: 0px;
+    width: 35%;
+    padding: 8px;
+    text-align: center;
+    
+}
+.container .form-horizontal .detail_btn
+{
+    background-color: rgba(255, 0, 0, 0.83);
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 0px;
+    border-radius: 0px;
+    width: 15%;
+    padding: 8px;
+    text-align: center;
+   
+    float:left;
+}
+.container .form-horizontal
+{
+    margin: 10px;
+}
+.container .form-horizontal .confidential_msg
+{
+    color:#ff0000;
+    font-size:15px;
+    margin-left:15px;
+}
+.container .form-horizontal .btn-submit,.btn-cancel
+{
+    background-color:rgba(255, 0, 0, 0.83);
+    color:#fff;
+    font-weight:bold;
+    border: 0px;
+    border-radius: 10px;
+    font-size: 20px;
+    float:right;
+}
+.container .form-horizontal .btn-submit:hover,.btn-cancel:hover
+{
+    background-color:rgba(255, 0, 0, 0.83);
+    color:#fff;
+    font-weight:bold;
+    border: 0px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.modal-popup .modal-title
+{
+    text-align:center;
+    border:none;
+}
+.container .form-horizontal .product-name,.product-seller,.product-sku
+{
+    text-transform:uppercase;
+}
+.container .form-horizontal .control-label
+{
+    text-align:left;
+}
+.container .form-horizontal .full_name,.company,.message
+{
+    float: none;
+}
+.name label.required:after
+{
+    content: '*';
+    color: #333;
+    font-size: 12px;
+    margin: 0 0 0 5px;
+}
+.email-address label.required:after
+{
+    content: '*';
+    color: #333;
+    font-size: 12px;
+    margin: 0 0 0 5px;
+}
+button.delet
+{
+    display:none;
+}
+.page-title-wrapper.product
+{
+    position:relative;
+}
+.page-title-wrapper.product a.report_button
+{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}
+.page-title-wrapper.product a.report_button img
+{
+    width:20px;
+    height:20px;
+    border-radius:20px
+}
+.confidential_text
+{
+    margin-top:5px;
+}
+.report_contt
+{   display:none;
+    font-size:12px;
+}
+.mulitplefileuploader
+{   clear:both;
+    cursor:pointer;
+    word-wrap: break-word;
+    width: 100%;
+}
+
+
+fieldset{
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.col-md-6{
+    width:50%;
+    float:left;
+    
+}
+
+.col-md-5{
+    width:41.66667%;
+    float:left;
+    
+}
+.col-md-3{
+    width:25%;
+    float:left;
+    
+}
+
+
+
+.form-group {
+    margin-bottom: 15px;
+    overflow:auto;
+    
+    width:100%;
+}
+.form-group .group{
+    line-height:2;
+}
+.group{
+    line-height:2;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width:90%;
+}
+.input-group-textarea {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width:93%;
+}
+.input-group .form-control {
+    display: table-cell;
+}
+.input-group .form-control {
+display: table-cell;
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 90%;
+    margin-bottom: 0;
+}
+
+textarea{
+    resize:none;
+    width:96%;
+}
+
+.control-label{
+    font-weight:bold;
+}
+
+.input-group>i{
+    
+    float: left;
+    line-height: 30px;
+    border: 1px solid #c2c2c2;
+    text-align:center;
+    background: #dfdfdf;
+    width:20px;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.input-group-textarea>i {
+    
+    float: left;
+    line-height: 18.4;
+    border: 1px solid #c2c2c2;
+    text-align:center;
+    background: #dfdfdf;
+    width:20px;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.product-image{
+    text-align:center;
+}
+
+.pad-5{
+    padding:5px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .col-md-6{
+        width:100%;
+    }
+    .col-md-3{
+        width:50%;
+    }
+    .col-md-5{
+        width:100%;
+    }
+    .product-image{
+    text-align:left;
+    margin-top:10px;
+}
+.container .form-horizontal .product_img_btn{
+    margin:0;
+}
+.modal-content{
+    padding:0 2px !important;
+}
+.modal-popup.modal-slide{
+    left:2px !important;
+}
+textarea{
+    
+    width:90%;
+}
+}
+.container .form-horizontal button
+{
+    background-color:#fff !important;
+    border:none !important;
+}
+.has-error .help-block
+{
+    color:red;
+}
+.p-name
+{
+    margin-top:10px;
+}
+
+.product-reviews-summary
+{
+   width:100% !important;
+}
+
+
+
+
+
+
+
+
+

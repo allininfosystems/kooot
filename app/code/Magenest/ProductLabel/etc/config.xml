@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magenest. All rights reserved.
+ * See COPYING.txt for license details.
+ *
+ *
+ * Magenest_ProductLabel extension
+ * NOTICE OF LICENSE
+ *
+ * @category  Magenest
+ * @package   Magenest_ProductLabel
+ * @author ThaoPV <thaopw@gmail.com>
+ *
+ */
+-->
+<config	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <product_labels>
+            <product_onsale>
+                <display>1</display>
+                <position>top-right</position>
+            </product_onsale>
+            <category_onsale>
+                <display>1</display>
+                <position>top-right</position>
+            </category_onsale>
+            <product_new>
+                <display>1</display>
+                <position>top-left</position>
+                <days>30</days>
+            </product_new>
+            <category_new>
+                <display>1</display>
+                <position>top-left</position>
+                <days>30</days>
+            </category_new>
+        </product_labels>
+    </default>
+</config>

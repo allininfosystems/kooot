@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Medma_MarketPlace::medma" title="Medma" module="Medma_MarketPlace" sortOrder="10"  resource="Medma_MarketPlace::MarketPlaceAdminMenu"/>
+        <add id="Medma_MarketPlace::marketplace" title="Marketplace" module="Medma_MarketPlace" sortOrder="10"  parent="Medma_MarketPlace::medma" resource="Medma_MarketPlace::marketplace"/>
+        
+	    <add id="Medma_MarketPlace::marketplacedashboard" title="Dashboard" module="Medma_MarketPlace" sortOrder="20" action="admin_marketplace/dashboard/index" resource="Medma_MarketPlace::dashboard" parent="Medma_MarketPlace::marketplace"/>
+
+        <add id="Medma_MarketPlace::pending_products" title="Pending Products" module="Medma_MarketPlace" sortOrder="30" parent="Medma_MarketPlace::marketplace" action="admin_marketplace/product/pending" resource="Medma_MarketPlace::pending_products"/>
+        
+        <add id="Medma_MarketPlace::manage_vendors" title="Manage Vendors" module="Medma_MarketPlace" sortOrder="40" parent="Medma_MarketPlace::marketplace" action="admin_marketplace/vendor/index" resource="Medma_MarketPlace::manage_vendors"/>
+        
+        <add id="Medma_MarketPlace::reviews_ratings" title="Manage Feedbacks" module="Medma_MarketPlace" sortOrder="50" parent="Medma_MarketPlace::marketplace" action="admin_marketplace/feedback/index" resource="Medma_MarketPlace::manage_feedbacks"/>
+
+<!--
+		<add id="Medma_MarketPlace::manage_verification" title="Verification" module="Medma_MarketPlace" sortOrder="50" parent="Medma_MarketPlace::marketplace" resource="Medma_MarketPlace::manage_verification"/>
+-->
+        
+			<add id="Medma_MarketPlace::manage_type" title="Manage Verification Documents" module="Medma_MarketPlace" sortOrder="60" parent="Medma_MarketPlace::marketplace" action="admin_marketplace/prooftype/index" resource="Medma_MarketPlace::manage_verification_documents"/>
+        
+        <add id="Medma_MarketPlace::configuration" title="Marketplace Configuration" module="Medma_MarketPlace" sortOrder="70" parent="Medma_MarketPlace::marketplace" action="adminhtml/system_config/edit/section/marketplace/" resource="Medma_MarketPlace::configuration"/>
+<!--
+        <add id="Medma_MarketPlace::report_extension" title="Report Products" module="Medma_MarketPlace" sortOrder="130" action="adminhtml/system_config/edit/section/report"  parent="Medma_MarketPlace::marketplace" resource="Medma_MarketPlace::report_extension"/>
+-->
+	 </menu>	
+	 <menu>
+		<!--*************************** Vendor Menu ******************************-->
+		<add id="Medma_MarketPlace::vendor" title="Vendor" module="Medma_MarketPlace" sortOrder="150"  resource="Medma_MarketPlace::MarketplaceVendorMenu"  />
+
+		<add id="Medma_MarketPlace::my_account_section" title="My Account" module="Medma_MarketPlace" sortOrder="20" parent="Medma_MarketPlace::vendor" action="admin_marketplace/vendor/edit" resource="Medma_MarketPlace::my_account_section"/> 
+        <add id="Medma_MarketPlace::orders" title="Orders" module="Medma_MarketPlace" sortOrder="30" parent="Medma_MarketPlace::vendor" action="admin_marketplace/order/index" resource="Medma_MarketPlace::orders"/>
+       
+        <add id="Medma_MarketPlace::transactions" title="Transactions" module="Medma_MarketPlace" sortOrder="40" parent="Medma_MarketPlace::vendor" action="admin_marketplace/transaction/vendor" resource="Medma_MarketPlace::transactions"/>
+        <add id="Medma_MarketPlace::reviews" title="Feedbacks" module="Medma_MarketPlace" sortOrder="50" parent="Medma_MarketPlace::vendor" action="admin_marketplace/feedback/vendor"  resource="Medma_MarketPlace::reviews"/>
+        <add id="Medma_MarketPlace::vendor_configuration" title="Configuration" module="Medma_MarketPlace" sortOrder="60" parent="Medma_MarketPlace::vendor" action="admin_marketplace/configuration/index" resource="Medma_MarketPlace::vendor_configuration"/>
+        <add id="Medma_MarketPlace::manage_messages" title="Manage Messages" module="Medma_MarketPlace" sortOrder="70" action="admin_marketplace/vendor/messages"  parent="Medma_MarketPlace::vendor" resource="Medma_MarketPlace::manage_messages"/>
+   </menu>
+    
+</config>

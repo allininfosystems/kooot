@@ -1,0 +1,14 @@
+#vendor_tabs_form_section_content > .entry-edit > .admin__fieldset > .admin__field > .admin__field-label
+{
+   width:25% !important;
+   
+}
+
+#vendor_tabs_profile_section_content > .entry-edit > .admin__fieldset > .admin__field > .admin__field-label
+{
+    width:40% !important;
+}
+#page_image
+{
+   display:block;
+}

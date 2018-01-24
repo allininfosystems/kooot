@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+ <head>
+	<title>Seller Profile</title>  
+	<css src="Medma_MarketPlace::css/styles.css"/>
+ </head>
+<body>
+    <referenceBlock name="header.links">
+        <block class="Magento\Framework\View\Element\Html\Link" name="header_request_seller_link" ifconfig="marketplace/vendor_registration/request_seller_top_link" >
+            <arguments>
+				 <argument name="label" xsi:type="helper" helper="Medma\MarketPlace\Helper\Data::getSellerRegistrationLabelConfig">
+						<param name="name">value</param>
+				</argument>
+                <argument name="path" xsi:type="string" translate="false">marketplace/vendor/register</argument>    
+            </arguments>
+        </block>
+         <block class="Magento\Framework\View\Element\Html\Link" name="vendor_search" ifconfig="productsearch/vendor/search" >
+            <arguments>
+				 <argument name="label" xsi:type="helper" helper="Medma\MarketPlace\Helper\Data::getVendorSearchLabelConfig">
+						<param name="name">value</param>
+				</argument>
+                <argument name="path" xsi:type="string" translate="false">marketplace/vendor/search</argument>    
+            </arguments>
+        </block>
+    </referenceBlock>
+    <referenceBlock name="footer_links">
+        <block class="Magento\Framework\View\Element\Html\Link" name="footer_request_seller_link" >
+            <arguments>
+                <argument name="label" xsi:type="string" translate="false">Request Seller</argument>
+                <argument name="path" xsi:type="string" translate="false">marketplace/vendor/register</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+</body>
+</page>

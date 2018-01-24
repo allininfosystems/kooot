@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    	    
+	 <head>
+		   <css src="Medma_MarketPlace::css/bootstrap-theme.min.css"/>
+		   <css src="Medma_MarketPlace::css/bootstrapValidator.min.css"/>
+		   <css src="Medma_MarketPlace::css/style.css"/>
+		   <css src="Medma_MarketPlace::css/uploadfile.css"/>
+		   <css src="Medma_MarketPlace::css/font-awesome.min.css"/>
+
+	   </head>
+    <body>
+
+        
+           <referenceContainer name="product.info.main">
+                <block class="Medma\MarketPlace\Block\VendorList"  ifconfig="productsearch/general/extension_status" name="vendor_list" template="vendorlist.phtml" />
+           </referenceContainer>
+<!--
+            <referenceBlock name="product.info.price" remove="true" />
+		 <referenceBlock name="product.info.overview" remove="true" />
+		 <referenceBlock name="product.info" remove="true" />
+		 <referenceBlock name="product.info.social" remove="true" />
+-->
+        <move element="vendor_list" destination="product.info.main"/>
+
+		<referenceContainer name="sidebar.additional">
+            <block class="Medma\MarketPlace\Block\Catalog\Product\Vendor\Sidebar" name="marketplace.catalog_product_vendor_sidebar" 
+            template="Medma_MarketPlace::catalog/product/vendor/sidebar.phtml" ifconfig="marketplace/general/right_left_layout">
+                <arguments>
+                    <argument name="title" xsi:type="string">sellerinformation</argument>
+                </arguments>
+            </block>            
+        </referenceContainer>
+
+        
+
+		<referenceBlock name="product.info.details">
+            <block class="Medma\MarketPlace\Block\Catalog\Product\Vendor\Info" name="marketplace.catalog_product_vendor_info" 
+            template="Medma_MarketPlace::catalog/product/vendor/info.phtml" group="detailed_info" 
+            ifconfig="marketplace/general/product_info_layout">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Seller Information</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+		 <referenceContainer name="product.info.main" >
+			 <block class="Medma\MarketPlace\Block\Product\Vendors" name="product.custom" 
+						template="Medma_MarketPlace::product/vendor.phtml" before='-' />
+			<block class="Medma\MarketPlace\Block\Product\Report" ifconfig="report/general/enabled" name="product.info.custom" 
+						template="Medma_MarketPlace::product/report.phtml" after='product.info.review' >
+			</block>
+		</referenceContainer>
+		 <referenceContainer name="before.body.end">
+		   <block class="\Magento\Framework\View\Element\Template" ifconfig="report/general/enabled" template="Medma_MarketPlace::before.phtml" name="before_body_js"/>
+		   <block class="\Magento\Framework\View\Element\Template" ifconfig="report/general/enabled" template="Medma_MarketPlace::uploadfile.phtml" name="upload_file_js"/>
+		</referenceContainer>
+    </body>
+</page>

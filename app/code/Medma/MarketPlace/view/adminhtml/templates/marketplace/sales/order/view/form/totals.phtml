@@ -1,0 +1,45 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+?>
+<?php 
+?>
+<table cellspacing="0" width="100%">
+    <col />
+    <col width="1" />    
+    <tfoot>
+        <tr class="1">
+            <td class="label">
+                <strong><?php echo __("Total Admin Commission") ?></strong>
+            </td>
+            <td class="emph">
+                <strong><span class="price"><?php echo $this->coreRegistry()->registry('supplier_total_commission'); ?></span></strong>
+            </td>
+        </tr>
+        <tr class="2">
+            <td class="label">
+                <strong><?php echo  __("Total Vendor Amount") ?></strong>
+            </td>
+            <td class="emph">
+                <strong><span class="price"><?php echo $this->coreRegistry()->registry('supplier_total_amt'); ?></span></strong>
+            </td>
+        </tr>
+        <tr class="0">
+            <td class="label">
+                <strong><?php echo  __("Grand Total") ?></strong>
+            </td>
+            <td class="emph">
+                <strong><span class="price"><?php echo $this->coreRegistry()->registry('supplier_grand_total'); ?></span></strong>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+

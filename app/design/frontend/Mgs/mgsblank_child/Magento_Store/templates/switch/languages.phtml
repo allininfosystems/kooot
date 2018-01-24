@@ -1,0 +1,26 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Language switcher template
+ */
+?>
+<?php if (count($block->getStores())>1): ?>
+	<?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : ''?>
+	<div class="dropdown dropdown-switcher language switcher-language" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
+		<?php foreach ($block->getStores() as $_lang): ?>
+			<?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+				<button class="switcher-toggle dropdown-toggle" type="button" data-toggle="dropdown" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
+					<?php echo $block->escapeHtml($_lang->getName()) ?>
+				</button>
+			<?php endif; ?>
+		<?php endforeach; ?>
+	</div>
+<?php endif; ?>

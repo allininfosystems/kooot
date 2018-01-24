@@ -1,0 +1,104 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+ 
+$_order = $this->getOrder(); 
+$orderAdminDate = $block->formatDate(
+    $this->getOrderAdminDate($_order->getCreatedAt()),
+    \IntlDateFormatter::MEDIUM,
+    true
+);
+?>
+<section class="admin__page-section order-view-account-information">
+	<div class="page-actions">
+		<div class="page-actions-inner">
+			<div class="page-actions-buttons">
+				<button id="btnBack" title="Back" type="button" class="action-default scalable back" 
+                            onclick="setLocation('<?php echo $this->getBackUrl() ?>')" style="">
+                        <span><?php echo __('Back'); ?></span>
+                 </button>
+                  <?php if ($this->isShipButtonDisplay()): ?>
+                        <button id="btnShip" title="Ship" type="button" class="action-default scalable invoice" 
+                                onclick="setLocation('<?php echo $this->getShipUrl(); ?>')" style="">
+                            <span><?php echo __('Ship'); ?></span>
+                        </button>
+                    <?php endif; ?>	
+                      <?php if ($this->isInvoiceButtonDisplay()): ?>
+                        <button id="btnInvoice" title="Invoice" type="button" class="action-default scalable ship" 
+                                onclick="setLocation('<?php echo $this->getInvoiceUrl(); ?>')" style="">
+                            <span><?php echo __('Invoice'); ?></span>
+                        </button>	
+                      <?php endif; ?>
+            </div>   
+         </div>      		  
+	</div>
+    <div id="order-messages">
+    <?php echo $this->getChildHtml('order_messages'); ?>
+</div>
+<?php echo $this->getLayout()->createBlock('Medma\MarketPlace\Block\Adminhtml\Order\Form\Info')->toHtml(); ?>
+</section>    
+<section class="admin__page-section order-view-billing-shipping">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Payment &amp; Shipping Method'); ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-payment-method<?php if ($_order->getIsVirtual()): ?> order-payment-method-virtual<?php endif; ?>">
+            <?php /* Payment Method */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Payment Information'); ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="order-payment-method-title"><?php echo $block->getPaymentHtml() ?></div>
+                <div class="order-payment-currency"><?php /* @escapeNotVerified */ echo __('The order was placed using %1.', $_order->getOrderCurrencyCode()); ?></div>
+                <div class="order-payment-additional">
+                    <?php echo $block->getChildHtml('order_payment_additional'); ?>
+                    <?php echo $block->getChildHtml('payment_additional_info'); ?>
+                </div>
+            </div>
+        </div>
+         <div class="admin__page-section-item order-payment-method<?php if ($_order->getIsVirtual()): ?> order-shipment-method-virtual<?php endif; ?>">
+            <?php /* Payment Method */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?php /* @escapeNotVerified */ echo __('Shipping &amp; Handling Information'); ?></span>
+            </div>
+             <?php if ($_order->getShippingDescription()): ?>
+            <div class="admin__page-section-item-content">
+                 <strong><?php echo $this->escapeHtml($_order->getShippingDescription()); ?></strong>
+				  <?php //if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
+                            <?php $_excl = $this->displayShippingPriceInclTax($_order); ?>
+                        <?php //else: ?>
+                            <?php $_excl = $this->displayPriceAttribute('shipping_amount', false, ' '); ?>
+                        <?php //endif; ?>
+                        <?php $_incl = $this->displayShippingPriceInclTax($_order); ?>
+
+                        <?php echo $_excl; ?>
+                        <?php //if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                            (<?php //echo __('Incl. Tax'); ?> <?php echo $_incl; ?>)
+                        <?php //endif; ?>
+            </div>
+            <?php else:?>
+			        <?php echo __('No shipping information available'); ?>
+                    <?php endif; ?>
+        </div>
+    </div>
+</section>
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Items Ordered') ?></span>
+    </div>
+    <?php echo $this->getLayout()->createBlock('Medma\MarketPlace\Block\Adminhtml\Order\Form\Items')->toHtml(); ?>
+</section>
+<section class="admin__page-section-item order-totals">
+    <div class="admin__page-section-title">
+        <span class="title"><?php /* @escapeNotVerified */ echo __('Order Totals') ?></span>
+    </div>
+    <?php echo $this->getLayout()->createBlock('Medma\MarketPlace\Block\Adminhtml\Order\Form\Totals')->toHtml(); ?>
+</section>

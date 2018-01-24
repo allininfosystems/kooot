@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/Event/etc/events.xsd">
+<event name="core_layout_block_create_after">
+    <observer name="setSellerInfoBlock" instance="Medma\MarketPlace\Observer\MarketplaceObserver"/>
+</event>
+
+<event name="catalog_product_collection_load_after">
+	<observer name="productCollectionFilter" instance="Medma\MarketPlace\Observer\ProductfilterObserver"/>
+</event>
+</config> 
+   

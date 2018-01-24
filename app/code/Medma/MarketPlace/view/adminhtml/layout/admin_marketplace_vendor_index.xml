@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Grid Grid List Layout
+ *
+ * @category    Webkul
+ * @package     Webkul_Grib
+ * @author      Webkul Software Private Limited
+ *
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="styles"/>
+	<head>
+	<css src='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' src_type='url' />
+	<css src='Medma_MarketPlace::css/style.css' />
+	    </head>
+	    <body>
+        <referenceContainer name="content">
+                <!-- here we call our ui component of grid-->
+			<block class="Medma\MarketPlace\Block\Adminhtml\Vendor" name="vendor"/>
+
+        </referenceContainer>
+    </body>
+</page>

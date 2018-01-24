@@ -1,0 +1,69 @@
+<?php
+/**
+ *
+ * Copyright © 2016 Medma. All rights reserved.
+ * 
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ */
+?>
+<?php $product = $block->getProductObject()->create()->load($this->getRequest()->getParam('id')); 
+$vendorInfo = $block->getVendorInfo();
+
+?>
+<?php  if($vendorInfo!= NULL): ?>
+<?php //$vendorInfo = $block->getVendorInfo(); 
+	  $position = $this->getShopInfoDisplay();
+	  
+	if($block->getConfigData("general", "display_seller_information_on_frontend")):
+       // $vendorInfo = $this->getVendorInfo(); 
+        
+        if($vendorInfo['display_profile_frontend_for_admin']):          
+?>
+<div class="box-collateral box-description" >	
+	
+	<div class="std"><a href="<?php echo $this->getVendorProfileUrl($vendorInfo['entity_id']); ?>"><?php echo $vendorInfo['shop_name']; ?></a>
+	
+	<?php $profileImage = $block->getViewFileUrl('Medma_MarketPlace::images/default.jpg');
+			if ($vendorInfo['image']){
+					$profileImage = $this->helper('\Medma\MarketPlace\Helper\Data')->getImagesUrl('profile') . $vendorInfo['image']; 
+			} ?>
+            <br><img src="<?php echo $profileImage; ?>" width="150" />	
+	</div>
+	
+	<div class="add-to-box">
+		<?php 
+				$customer_Id = $this->helper('\Medma\MarketPlace\Helper\Data')->getLoggedInUser();
+                if($customer_Id)
+                {
+					
+					$link = "add";
+					$txt = "Add to Favourite";
+					if($this->helper('\Medma\MarketPlace\Helper\Data')->checkSellerInFavorite($vendorInfo['entity_id'],$customer_Id))
+					{
+							$link = "remove";
+							$txt = "Remove From Favourite";
+					} 
+					?>
+					<button type="button" title="<?php echo $txt; ?>" class="button favourite_button" onclick="window.location.href = '<?php echo $this->getUrl("marketplace/favourite/".$link."/id/".$vendorInfo['entity_id']."/") ?>';" >     	
+						<span><span><?php echo __($txt); ?></span></span>
+					</button>                        
+                <?php 
+                }
+                else 
+                { ?>        
+					<button type="button" title="<?php echo __('Add to Favourite') ?>" class="button favourite_button"  onclick="return alert('<?php echo __("Please login to add seller to favourite!")?>');">     	
+						<span><span><?php echo __('Add to Favourite'); ?></span></span>
+					</button> 						
+				<?php 
+				} ?> 
+		
+	</div>
+</div>
+
+<?php endif; ?>
+<?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,18 @@
+<!--@subject {{trans "Vendor Registration Email" }} @-->
+{{template config_path="design/email/header_template"}} <!-- pathe of template header-->
+ 
+<!-- here $myvar1 -->
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hi %receiver_name," receiver_name=$myvar2}}</p>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+             <p><b>{{trans "%customer_name" customer_name=$myvar1}}</b> has registered as a vendor in your store.</p>
+        </td>
+    </tr>
+</table>
+ 
+{{template config_path="design/email/footer_template"}} <!--footer of template-->

@@ -1,0 +1,14 @@
+<?php
+
+$data=$block->getCurrentProduct();
+
+
+if(isset($data))
+{
+	$url=$block->getVendorProfileUrl($data);
+?>
+<!--<a href="<?php echo $url;?>" style='display:block;line-height: 3;
+    font-size: larger;
+    font-weight: bolder;'>View Seller Profile</a> -->
+<?php
+}?>
